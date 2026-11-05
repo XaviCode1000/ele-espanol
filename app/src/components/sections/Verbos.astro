@@ -1,0 +1,17 @@
+---
+import TaskMount from '../TaskMount.astro';
+
+const SUJETOS = ['yo', 'tú', 'él / ella', 'usted', 'nosotros', 'vosotros', 'ellos', 'ustedes', 'mi madre', 'mis hijos', 'la profesora'];
+const VERBOS = ['hablar', 'comer', 'vivir', 'querer', 'ser', 'llamarse', 'estudiar', 'beber', 'leer', 'escribir', 'trabajar', 'comprender'];
+---
+
+<h2 class="sec-title" data-fr="t-verb">⚙️ El presente: regulares e irregulares</h2>
+<p class="sec-desc" data-fr="d-verb">-AR / -ER / -IR y el verbo <b>querer</b> (e → ie). Consulta la tabla en 🧰 Herramientas 0.5.</p>
+<TaskMount id="v3_1" />
+<TaskMount id="v3_2" />
+<TaskMount id="v3_3" />
+<div class="card"><h3>🎲 3.4 Juego familiar: los dados del verbo</h3>
+<p class="cons" data-fr="dados">Un miembro dice un <b>sujete</b>, otro dice un <b>verbo</b> y el tercero forma la frase en menos de 5 segundos. 1 punto por acierto; gana quien llegue a 10.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">{SUJETOS.map((s) => <span class="tag">{s}</span>)}</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px">{VERBOS.map((v) => <span class="tag g">{v}</span>)}</div>
+<p class="hint">Variante difícil: después de la frase, el siguiente debe hacer una pregunta con <b>¿cuánto/a/os/as?</b> o <b>¿cuándo?</b> usando ese verbo.</p></div>

@@ -1,0 +1,37 @@
+---
+import { ENTREV, DETECT, SPELLW } from '../../data/autoeval.js';
+---
+
+<h2 class="sec-title" data-fr="t-juegos">🎲 Juegos en familia</h2>
+<p class="sec-desc" data-fr="d-juegos">30 minutos de práctica oral. Aquí se consolida lo que los ejercicios escritos solo preparan.</p>
+<div class="card">
+  <div class="card-head"><div><h3>🃏 7.1 Dominó encadenado de la identidad (30 fichas)</h3><span class="tag p">Autoverificable</span></div><button type="button" class="btn btn-ghost btn-sm" id="domReset">↺ Reiniciar</button></div>
+  <p class="cons" data-fr="domino">Haz clic en las fichas en orden, empezando por la ★ dorada. Cada ficha <b>responde</b> a la pregunta de la anterior. Si la cadena se cierra (la ficha 30 pregunta «¿Cómo te llamas?» y la ficha 1 responde «Me llamo Ana Ruiz»), el dominó está perfecto.</p>
+  <div class="box red mini" style="margin-bottom:12px" data-fr="reglas-domino"><b>Reglas lingüísticas obligatorias:</b> leer en voz alta · usar siempre el verbo <i>ser</i> · no decir artículo con la profesión · deletrear con los nombres de las letras. Quien incumple una regla pierde el turno.</div>
+  <div id="domWrap"></div>
+</div>
+<div class="card"><h3>🎤 7.2 Entrevista cruzada (3 minutos por pareja)</h3>
+<p class="cons" data-fr="entrevista">Un miembro entrevista a otro con estas 12 tarjetas; el tercero hace de <b>notario</b> y anota los errores. Después se intercambian los papeles.</p>
+<div class="grid g3">{ENTREV.map((q, i) => <div class="box blue" style="text-align:center"><b style="color:#1e40af">{i + 1}.</b> <span class="mini" style="color:#1e3a8a">{q}</span></div>)}</div>
+<div class="box amber mini" style="margin-top:12px" data-fr="notario"><b>Ficha del notario:</b> ✘ sin verbo <i>ser</i> ____ · ✘ artículo + profesión ____ · ✘ /p/ por /b/ ____ · ✘ sin ¿ ____ · ✘ diptongo reducido ____</div></div>
+<div class="card"><h3>🕵️ 7.3 Detectives de errores</h3>
+<p class="cons" data-fr="detectives">Haz clic en cada tarjeta para revelar la corrección. Tipos: <b>S</b> falta <i>ser</i> · <b>A</b> artículo con profesión · <b>F</b> fonética/ortografía · <b>P</b> puntuación o mayúsculas · <b>G</b> concordancia.</p>
+<div class="grid g3">
+  {DETECT.map((d, i) => (
+    <button type="button" class="flip" data-flip={i} aria-pressed="false" aria-label={`Revelar la corrección de: ${d.w}`}>
+      <span class="flip-in">
+        <span class="flip-f"><span><span class="tag" style="background:#fecaca;color:#991b1b">{d.t}</span> {d.w}</span></span>
+        <span class="flip-b"><span set:html={d.c} /></span>
+      </span>
+    </button>
+  ))}
+</div></div>
+<div class="card">
+  <div class="card-head"><div><h3>🔤 7.4 Carrera del deletreo (20 palabras)</h3><span class="tag g" id="spellChip">0 / 20</span></div></div>
+  <p class="cons" data-fr="deletreo">Por turnos: un miembro dice la palabra y otro la deletrea en menos de 10 segundos. Marca con un clic las palabras superadas.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:7px">
+    {SPELLW.map((w, i) => (
+      <button type="button" class="opt" data-spell={i} aria-pressed="false">{w}</button>
+    ))}
+  </div>
+</div>

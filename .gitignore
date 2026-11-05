@@ -1,0 +1,15 @@
+# Node / build artifacts (app/)
+app/node_modules/
+app/dist/
+app/.astro/
+
+# Tool artifacts
+codedb.snapshot
+.atl/
+.zcode-site/
+
+# Stray file (accidental download)
+-.png
+
+# OS
+.DS_Store

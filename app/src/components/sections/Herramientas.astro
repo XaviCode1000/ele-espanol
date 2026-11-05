@@ -1,0 +1,19 @@
+---
+import { TOOLS } from '../../data/tools.js';
+import { TOOLS_FR } from '../../data/fr.js';
+---
+
+<h2 class="sec-title" data-fr="t-herr">🧰 Caja de Herramientas</h2>
+<p class="sec-desc" data-fr="d-herr">Consulta rápida antes de hacer los ejercicios. Es el «libro de texto» del dossier: todo lo visto en la Clase 1 en un solo lugar.</p>
+<div class="grid g2">
+  {TOOLS.map((t, i) => (
+    <div class="acc" id={`acc${i}`}>
+      <button class="acc-head" type="button" data-acc={i} aria-expanded="false" aria-controls={`accbody${i}`}>
+        <span>{t.i}</span><span>{t.t}</span>
+        <span class="cons-fr">{TOOLS_FR[i]}</span>
+        <span class="arw">▼</span>
+      </button>
+      <div class="acc-body" id={`accbody${i}`} set:html={t.b} />
+    </div>
+  ))}
+</div>

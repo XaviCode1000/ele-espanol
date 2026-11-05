@@ -1,0 +1,45 @@
+---
+import { CANDO } from '../../data/autoeval.js';
+---
+
+<h2 class="sec-title" data-fr="t-auto">✅ Autoevaluación y seguimiento</h2>
+<p class="sec-desc" data-fr="d-auto">Semáforo de capacidades, muro de errores personales y repaso espaciado.</p>
+<div class="card"><h3>9.1 Can-Do Checklist</h3>
+<p class="cons" data-fr="cando">🟢 lo hago solo · 🟡 lo hago con ayuda · 🔴 todavía no. Sed honestos: esto lo leerá el profesor en la Clase 2.</p>
+{CANDO.map((c, i) => (
+  <div class="cando-row">
+    <div class="sem">
+      <button type="button" data-c="green" data-cando={`${i}|green`} aria-pressed="false" aria-label={`${c}: lo hago solo`} title="Lo hago solo">🟢</button>
+      <button type="button" data-c="yellow" data-cando={`${i}|yellow`} aria-pressed="false" aria-label={`${c}: con ayuda`} title="Con ayuda">🟡</button>
+      <button type="button" data-c="red" data-cando={`${i}|red`} aria-pressed="false" aria-label={`${c}: todavía no`} title="Todavía no">🔴</button>
+    </div>
+    <span class="txt">{c}</span>
+  </div>
+))}
+<div class="box blue mini" style="margin-top:12px">Verdes: <b id="cdG">0</b> · Amarillos: <b id="cdY">0</b> · Rojos: <b id="cdR">0</b>. Los rojos y amarillos son la lista de la compra de la Clase 2: eso es lo que vais a preguntar al profesor.</div></div>
+
+<div class="card">
+  <div class="card-head"><div><h3>9.2 Muro de mis sonidos y errores difíciles</h3></div><button type="button" class="btn btn-ghost btn-sm" id="addErr">+ Añadir fila</button></div>
+  <p class="cons" data-fr="muro">Anotad los errores reales que han aparecido esta semana. El profesor los corregirá uno a uno en la Clase 2.</p>
+  <div class="tbl-scroll"><table><tr><th>Sonido / regla</th><th>Mi error real</th><th>La forma correcta</th><th style="width:110px">Veces practicado</th></tr>
+  <tbody id="errBody"></tbody>
+  </table></div>
+</div>
+
+<div class="grid g2">
+  <div class="card box amber" style="margin-bottom:0"><h3 style="font-size:1rem;color:#92400e" data-fr="cuesta-auto">🐢 Si te cuesta…</h3><p class="mini" style="color:#92400e">Trabaja solo con: 🧰 Herramientas · 1.2 (/p/~/b/) · 2.1 y 2.2 (<i>ser</i>) · 2.4 (artículos) · 8.3 (guion con huecos). Todo lo demás es opcional esta semana.</p></div>
+  <div class="card box green" style="margin-bottom:0"><h3 style="font-size:1rem;color:#166534" data-fr="antes-auto">🚀 Si terminas antes…</h3><ul class="mini" style="color:#166534;padding-left:18px"><li>Escribe 8 frases más sobre tu familia.</li><li>Convierte las 10 frases del dictado en preguntas.</li><li>Busca en casa 10 objetos y clasifícalos por ca·co·cu / ce·ci / k / z / s.</li><li>Prepara una pregunta sorpresa para cada miembro de la familia.</li></ul></div>
+</div>
+
+<div class="card"><h3>9.5 Contrato de estudio familiar</h3>
+<div class="box" style="font-style:italic" data-fr="contrato">
+  <p class="mini">Nos comprometemos a repasar juntos <input type="text" data-text="c_dias" aria-label="Días de repaso" value="" style="width:52px;text-align:center;display:inline-block" /> días, <input type="text" data-text="c_min" aria-label="Minutos por día" value="" style="width:64px;text-align:center;display:inline-block" /> minutos cada día, en el horario de <input type="text" data-text="c_hora" aria-label="Horario de repaso" value="" style="width:150px;text-align:center;display:inline-block" />.</p>
+  <div style="display:flex;gap:24px;justify-content:center;margin-top:20px;flex-wrap:wrap">
+    {[0, 1, 2].map((i) => (
+      <div style="text-align:center">
+        <div style="border-bottom:1.5px solid #94a3b8;width:150px;margin-bottom:5px"></div>
+        <span class="mini" style="color:var(--muted)"><span data-member={i}>Miembro {i + 1}</span></span>
+      </div>
+    ))}
+  </div>
+</div></div>

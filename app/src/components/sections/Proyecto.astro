@@ -1,0 +1,104 @@
+---
+import { CRIT } from '../../data/autoeval.js';
+
+const FIELDS = [
+  ['nombre', 'Nombre completo'],
+  ['apellido', 'Apellido (para deletrear)'],
+  ['origen', 'País / ciudad de origen'],
+  ['nac', 'Nacionalidad (m / f)'],
+  ['prof', 'Profesión (¡sin artículo!)'],
+  ['edad', 'Edad'],
+  ['correo', 'Correo electrónico'],
+  ['quer', 'Frase con QUERER: Yo quiero…'],
+  ['adj', 'Dos adjetivos: ___ y ___'],
+];
+
+const FASES = [
+  ['1. Saludo y registro', '20’’', 'Buenos días / Buenas tardes. ¿Cómo están ustedes? + elección tú/usted', 'f1'],
+  ['2. Autopresentación', '40’’', 'Nombre + origen + nacionalidad + profesión (sin artículo) + edad', 'f2'],
+  ['3. Deletreo en directo', '30’’', 'Apellido o correo, letra a letra, con los nombres de las letras', 'f3'],
+  ['4. Presentación de la familia', '60’’', 'Árbol: 3 personas con <i>es mi… / se llama… / es…</i>', 'f4'],
+  ['5. Cantidad y tiempo', '20’’', '2 frases con ¿Cuántos…? y 1 con ¿Cuándo…?', 'f5'],
+  ['6. Cierre', '10’’', 'Muchas gracias. ¿Tienen alguna pregunta?', 'f6'],
+];
+---
+
+<h2 class="sec-title" data-fr="t-proy">🌳 Proyecto integrador · entregable de la Clase 2</h2>
+<p class="sec-desc" data-fr="d-proy">Tarjeta de identidad × 3 + mini árbol genealógico + guion de presentación oral de 3 minutos por persona.</p>
+<div class="card"><h3>8.1 Tarjetas de identidad familiar</h3>
+<p class="cons" data-fr="p81">Completad una tarjeta por miembro. Recordad: la profesión va <b>sin artículo</b>. El correo debe estar listo para deletrear en directo.</p>
+<div class="grid g3 project-cards">
+  {[0, 1, 2].map((i) => (
+    <div class="box blue" style="padding:14px">
+      <p style="font-weight:800;color:#1e40af;text-align:center;margin-bottom:10px">👤 <span data-member={i}>Miembro {i + 1}</span></p>
+      {FIELDS.map(([key, label]) => (
+        <div style="margin-bottom:7px">
+          <label class="lbl" for={`proj_${i}_${key}`} style="font-size:.72rem">{label}</label>
+          <input type="text" id={`proj_${i}_${key}`} data-proj={`${i}|${key}`} value="" />
+        </div>
+      ))}
+    </div>
+  ))}
+</div></div>
+
+<div class="card"><h3>8.2 Mini árbol genealógico</h3>
+<p class="cons" data-fr="p82">Dibujadlo también en papel para traerlo a clase. Aquí podéis ensayar las frases del banco.</p>
+<div class="tree-box">
+  <div style="display:flex;justify-content:center;gap:14px;align-items:center;flex-wrap:wrap">
+    <div class="tree-node">
+      <input type="text" data-text="tree1n" aria-label="Nombre del primer progenitor" value="" placeholder="Nombre" style="font-weight:700;text-align:center" />
+      <input type="text" data-text="tree1r" aria-label="Relación del primer progenitor" value="" placeholder="Es mi ___" style="text-align:center;font-size:.78rem" />
+    </div>
+    <span class="arrow">+</span>
+    <div class="tree-node pink">
+      <input type="text" data-text="tree2n" aria-label="Nombre del segundo progenitor" value="" placeholder="Nombre" style="font-weight:700;text-align:center" />
+      <input type="text" data-text="tree2r" aria-label="Relación del segundo progenitor" value="" placeholder="Es mi ___" style="text-align:center;font-size:.78rem" />
+    </div>
+  </div>
+  <div class="arrow" style="margin:12px 0">↓ ↓ ↓</div>
+  <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+    {[1, 2, 3].map((n) => (
+      <div class="tree-node green" style="min-width:118px">
+        <input type="text" data-text={`treen${n}`} aria-label={`Nombre de la persona ${n}`} value="" placeholder="Nombre" style="font-weight:700;text-align:center" />
+        <input type="text" data-text={`treer${n}`} aria-label={`Relación de la persona ${n}`} value="" placeholder="Es mi ___" style="text-align:center;font-size:.78rem" />
+        <input type="text" data-text={`trees${n}`} aria-label={`Nombre de la persona ${n}`} value="" placeholder="Se llama ___" style="text-align:center;font-size:.78rem" />
+      </div>
+    ))}
+  </div>
+</div>
+<div class="box blue mini" style="margin-top:12px"><b>Banco de frases obligatorio:</b> Este es mi padre. · Esta es mi madre. · Él es mi hermano / Ella es mi hermana. · Se llama… · Es… (profesión sin artículo). · Es de… · Es francés / francesa / marroquí. · Tiene … años. · En mi familia somos … personas.</div></div>
+
+<div class="card"><h3>8.3 Guion de la presentación oral</h3>
+<p class="cons" data-fr="p83">3 minutos por persona. Marcad cada fase cuando la hayáis ensayado.</p>
+<div class="tbl-scroll"><table><tr><th>Fase</th><th style="text-align:center">Tiempo</th><th>Contenido</th><th style="text-align:center">✔</th></tr>
+  {FASES.map(([fase, tiempo, contenido, flag]) => (
+    <tr>
+      <td class="mini"><b>{fase}</b></td>
+      <td class="mini" style="text-align:center">{tiempo}</td>
+      <td class="mini" set:html={contenido} />
+      <td style="text-align:center">
+        <input type="checkbox" class="chk" data-text={`chk_${flag}`} aria-label={`Marcar ${fase} como ensayada`} data-flag={flag} />
+      </td>
+    </tr>
+  ))}
+</table></div>
+<div class="box amber" style="margin-top:14px"><p class="mini" style="font-weight:700;color:#92400e;margin-bottom:6px">Guion con huecos (rellenad, leed 3 veces y grabad):</p>
+<textarea data-text="guion" aria-label="Guion de la presentación oral con huecos" style="background:#fffdf5" placeholder={`Buenos días. Me llamo ____________. Soy de ____________, de la ciudad de ____________. Soy ____________ (nacionalidad). Soy ____________ (profesión). Tengo ____________ años.\nEsta es mi familia. Este es mi ____________; se llama ____________ y es ____________. Esta es mi ____________; se llama ____________ y es ____________. En mi familia somos ____________ personas.\nMi correo es ____________ y se deletrea ____________.\nMi cumpleaños es el ____________ de ____________. Muchas gracias.`}></textarea></div></div>
+
+<div class="card"><h3>8.4 Ensayo grabado y coevaluación familiar</h3>
+<p class="cons" data-fr="p84">Grabad el ensayo completo con el móvil y escuchadlo juntos al día siguiente. Puntuad: 1 = a mejorar · 2 = bien · 3 = muy bien.</p>
+<div class="tbl-scroll"><table><tr><th>Criterio</th>{[1, 2, 3].map((n) => <th style="text-align:center">{n}</th>)}</tr>
+  {CRIT.map((c, i) => (
+    <tr>
+      <td class="mini" set:html={c} />
+      {[1, 2, 3].map((n) => (
+        <td style="text-align:center">
+          <label class="crit-option" aria-label={`${c}: puntuación ${n}`}>
+            <input type="radio" class="chk" name={`crit${i}`} value={n} data-crit={`${i}|${n}`} />
+          </label>
+        </td>
+      ))}
+    </tr>
+  ))}
+</table></div>
+<div class="box green mini" style="margin-top:12px">Puntuación máxima: <b>21</b>. Objetivo mínimo para la Clase 2: <b>15</b>. Puntuación actual: <b id="critTotal">0</b>.</div></div>

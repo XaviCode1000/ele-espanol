@@ -1,0 +1,1260 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier de Repaso Autónomo Familiar · ELE A1 · Módulo 1</title>
+<style>
+:root{
+  --bg:#f1f5f9; --card:#ffffff; --ink:#0f172a; --muted:#526175; --line:#d7dee8; --control:#8492a5;
+  --brand:#2563eb; --brand-d:#1d4ed8; --brand-l:#dbeafe; --focus:#f59e0b;
+  --ok:#16a34a; --ok-l:#dcfce7; --bad:#dc2626; --bad-l:#fee2e2;
+  --warn:#d97706; --warn-l:#fef3c7; --purple:#7c3aed; --purple-l:#ede9fe;
+  --r:14px; --sh:0 1px 3px rgba(15,23,42,.08),0 1px 2px rgba(15,23,42,.04);
+  --sh-lg:0 10px 30px rgba(15,23,42,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+.hidden{display:none !important}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;padding-bottom:104px}
+h1,h2,h3,h4{font-family:ui-serif,Georgia,Cambria,'Times New Roman',serif;line-height:1.25}
+p{margin-bottom:.4rem}
+small{font-size:.8rem}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+/* ---------- HEADER ---------- */
+header.hero{background:linear-gradient(120deg,#1e3a8a 0%,#2563eb 45%,#4f46e5 100%);color:#fff;padding:26px 16px 24px;box-shadow:var(--sh-lg);position:relative;overflow:hidden}
+header.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 20%,rgba(255,255,255,.16),transparent 45%)}
+.hero-in{max-width:1040px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.kicker{text-transform:uppercase;letter-spacing:.16em;font-size:.75rem;color:#eff6ff;margin-bottom:8px}
+.hero h1{font-size:clamp(1.6rem,4.2vw,2.7rem);font-weight:700;margin:0}
+
+/* ---------- BUTTONS ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;cursor:pointer;font-family:inherit;font-size:.95rem;font-weight:600;min-height:44px;padding:10px 18px;border-radius:10px;transition:.18s;text-decoration:none}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-d);transform:translateY(-1px)}
+.btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--control)}
+.btn-ghost:hover{border-color:var(--brand);color:var(--brand)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-sm{padding:7px 13px;font-size:.875rem;border-radius:8px}
+.icon-btn{background:transparent;border:none;cursor:pointer;font-size:1.05rem;color:var(--muted);width:44px;height:44px;padding:6px;border-radius:8px;transition:.15s}
+.icon-btn:hover{background:var(--line);color:var(--ink)}
+
+/* ---------- NAV ---------- */
+nav.tabs{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);box-shadow:0 1px 8px rgba(15,23,42,.05)}
+.nav-shell{max-width:1040px;margin:0 auto;position:relative;padding:6px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.menu-toggle{min-height:44px;display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--ink);border:1.5px solid var(--control);border-radius:10px;padding:9px 14px;font:600 .95rem inherit;cursor:pointer;box-shadow:var(--sh);flex:0 0 auto}
+.family-toggle{min-height:44px;display:inline-flex;align-items:center;gap:7px;max-width:46vw;background:transparent;color:var(--ink);border:1.5px solid transparent;border-radius:10px;padding:8px 12px;font:600 .9rem inherit;cursor:pointer;overflow:hidden}
+.family-toggle:hover{background:#f1f5f9;border-color:var(--line)}
+.family-toggle #familyPill{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.menu-toggle:hover{border-color:var(--brand);color:var(--brand-d)}
+.menu-toggle[aria-expanded="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.menu-panel{position:absolute;top:calc(100% + 8px);right:12px;width:min(680px,calc(100vw - 24px));background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:0 18px 45px rgba(15,23,42,.18)}
+.menu-panel[hidden]{display:none}
+.menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.menu-item{width:100%;min-height:44px;display:flex;align-items:center;gap:9px;text-align:left;background:#fff;color:var(--ink);border:1px solid transparent;border-radius:9px;padding:9px 12px;font:600 .95rem inherit;cursor:pointer}
+.menu-item:hover{background:#f1f5f9;border-color:var(--line)}
+.menu-item.active{background:var(--brand-l);border-color:#93c5fd;color:var(--brand-d)}
+
+/* ---------- CARDS / SECTIONS ---------- */
+main{max-width:1040px;margin:0 auto;padding:24px 16px 40px}
+.sec-title{font-size:clamp(1.35rem,3vw,1.85rem);font-weight:700;margin-bottom:6px}
+.sec-desc{color:var(--muted);font-size:1rem;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--sh);margin-bottom:18px;animation:up .35s ease both}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.card h3{font-size:1.12rem;font-weight:700;margin-bottom:4px}
+.card .cons{color:var(--muted);font-size:.95rem;margin-bottom:14px}
+.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:4px}
+.tag{display:inline-block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:999px;background:var(--brand-l);color:var(--brand-d)}
+.tag.g{background:var(--ok-l);color:#15803d}.tag.o{background:var(--warn-l);color:#b45309}.tag.p{background:var(--purple-l);color:#6d28d9}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g5{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media(max-width:820px){.g3,.g4,.g5{grid-template-columns:repeat(2,minmax(0,1fr))}.g2{grid-template-columns:1fr}}
+@media(max-width:520px){.g4,.g5{grid-template-columns:1fr}}
+.box{border:1px solid var(--line);border-radius:12px;padding:12px;background:#f8fafc}
+.box.blue{background:#eff6ff;border-color:#bfdbfe}.box.amber{background:#fffbeb;border-color:#fde68a}
+.box.green{background:#f0fdf4;border-color:#bbf7d0}.box.purple{background:#faf5ff;border-color:#e9d5ff}
+.box.red{background:#fef2f2;border-color:#fecaca}
+
+/* ---------- FORM ---------- */
+input[type=text],input[type=number],textarea,select{width:100%;min-height:45px;font-family:inherit;font-size:1rem;color:var(--ink);background:#fff;border:1.5px solid var(--control);border-radius:9px;padding:10px 12px;transition:.18s}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(37,99,235,.16)}
+input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+input[readonly]{background:#f8fafc;cursor:default}
+textarea{resize:vertical;min-height:110px}
+label.lbl{display:block;font-size:.82rem;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}
+.chk{width:24px;height:24px;accent-color:var(--brand);cursor:pointer;flex:0 0 auto}
+.crit-option{display:flex;align-items:center;justify-content:center;min-height:44px;cursor:pointer}
+
+/* ---------- ITEMS ---------- */
+.item{border:1.5px solid var(--line);border-radius:12px;padding:13px;background:#fff;margin-bottom:10px;transition:.2s}
+.item:last-child{margin-bottom:0}
+.item.ok{background:var(--ok-l);border-color:#86efac}
+.item.ko{background:var(--bad-l);border-color:#fca5a5}
+.item.pending{background:#f8fafc}
+.q{font-size:1rem;font-weight:500;margin-bottom:9px}
+.q b{color:var(--brand-d)}
+.opts{display:flex;flex-wrap:wrap;gap:7px}
+.opt{min-height:44px;background:#fff;border:1.5px solid var(--control);border-radius:9px;padding:8px 14px;font-family:inherit;font-size:.95rem;font-weight:500;color:var(--ink);cursor:pointer;transition:.15s}
+.opt:hover:not(:disabled){border-color:var(--brand);background:#eff6ff}
+.opt.sel{background:var(--brand);border-color:var(--brand);color:#fff}
+.opt:disabled{cursor:default;opacity:.75}
+.fb{font-size:.79rem;margin-top:9px;padding:7px 10px;border-radius:8px}
+.fb.ok{background:#dcfce7;color:#166534}
+.fb.ko{background:#fee2e2;color:#991b1b}
+.ex-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px;align-items:center}
+.score-chip{font-size:.8rem;font-weight:700;padding:5px 12px;border-radius:999px;background:#f1f5f9;color:var(--muted)}
+.score-chip.ok{background:var(--ok-l);color:#15803d}
+
+/* ---------- TABLES ---------- */
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:middle}
+th{background:#f1f5f9;font-weight:700;font-size:.84rem;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+.tbl-scroll{overflow-x:auto}
+.mini{font-size:.875rem}
+.mini td,.mini th{padding:5px 7px}
+
+/* ---------- SYLLABLES ---------- */
+.syl-word{font-weight:700;font-size:.85rem;color:var(--muted);margin-bottom:7px}
+.syls{display:flex;gap:5px;flex-wrap:wrap}
+.syl{min-height:44px;border:1.5px solid var(--control);background:#fff;border-radius:8px;padding:7px 13px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;transition:.15s}
+.syl:hover{border-color:var(--brand)}
+.syl.sel{background:var(--brand);border-color:var(--brand);color:#fff}
+.syl.right{background:var(--ok);border-color:var(--ok);color:#fff}
+.syl.wrong{background:var(--bad);border-color:var(--bad);color:#fff}
+
+/* ---------- ACCORDION ---------- */
+.acc{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.acc-head{width:100%;min-height:48px;display:flex;align-items:center;gap:9px;background:#fff;border:none;cursor:pointer;font-family:inherit;font-size:.95rem;font-weight:700;color:var(--ink);padding:13px 14px;text-align:left;transition:.15s}
+.acc-head:hover{background:#f8fafc}
+.acc-head .arw{margin-left:auto;transition:.25s;color:var(--muted);font-size:.75rem}
+.acc.open .acc-head .arw{transform:rotate(180deg)}
+.acc-body{display:none;padding:0 14px 14px;border-top:1px solid var(--line);background:#fcfdff}
+.acc.open .acc-body{display:block;padding-top:12px}
+
+/* ---------- DOMINO ---------- */
+.tile{width:100%;border:2px solid #334155;border-radius:12px;background:#fff;overflow:hidden;cursor:pointer;transition:.18s;user-select:none;display:flex;flex-direction:column;font:inherit;color:inherit;text-align:left}
+.tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(15,23,42,.14)}
+.tile .ans{background:#f0fdf4;border-bottom:1px dashed #cbd5e1;padding:8px 10px;font-size:.8rem;font-weight:600;color:#14532d}
+.tile .que{padding:8px 10px;font-size:.8rem;color:var(--muted)}
+.tile.start{border-color:#f59e0b;background:#fffbeb}
+.tile.start .ans{background:#fef3c7;color:#92400e}
+.tile.placed{border-color:var(--brand);cursor:default;opacity:.95}
+.tile.locked{opacity:.42;cursor:not-allowed}
+.tile.locked:hover{transform:none;box-shadow:none}
+.chain{display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto;padding:4px;margin-bottom:14px}
+.chain .tile{cursor:default}
+.chain .tile:hover{transform:none;box-shadow:none}
+.pool{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:9px}
+.bar{height:9px;background:#e2e8f0;border-radius:99px;overflow:hidden;flex:1}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,#2563eb,#4f46e5);border-radius:99px;transition:width .4s ease}
+
+/* ---------- FLIP ---------- */
+.flip{width:100%;border:0;padding:0;background:transparent;perspective:900px;cursor:pointer;height:88px;font:inherit;color:inherit;text-align:left}
+.flip-in{display:block;position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.flip-f,.flip-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:11px;padding:9px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:.8rem;border:1.5px solid}
+.flip-f{background:#fef2f2;border-color:#fecaca;color:#991b1b}
+.flip-b{background:#f0fdf4;border-color:#bbf7d0;color:#166534;transform:rotateY(180deg)}
+
+/* ---------- MODAL ---------- */
+.modal{position:fixed;inset:0;z-index:100;background:rgba(15,23,42,.62);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:16px;animation:fade .25s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.modal-box{background:#fff;border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.35);width:100%;max-width:460px;padding:26px;position:relative;animation:pop .3s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes pop{from{opacity:0;transform:scale(.92) translateY(14px)}to{opacity:1;transform:none}}
+.modal-box h2{font-size:1.45rem;margin-bottom:6px}
+.modal-x{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:50%;border:none;background:#f1f5f9;cursor:pointer;font-size:1rem;color:var(--muted);transition:.15s}
+.modal-x:hover{background:var(--bad-l);color:var(--bad)}
+.field{margin-bottom:12px}
+
+/* ---------- SCORE BAR ---------- */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:45;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--line);box-shadow:0 -4px 18px rgba(15,23,42,.07);padding:9px 14px}
+.dock-in{max-width:1040px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.ring{flex:0 0 auto;position:relative;width:46px;height:46px}
+.ring svg{transform:rotate(-90deg)}
+.ring span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;color:var(--ink)}
+.chip{font-size:.78rem;font-weight:700;padding:5px 11px;border-radius:999px}
+.chip.ok{background:var(--ok-l);color:#15803d}
+.chip.ko{background:var(--bad-l);color:#b91c1c}
+.dock .spacer{flex:1}
+@media(max-width:640px){.dock .lbl-hide{display:none}}
+
+/* ---------- TOAST ---------- */
+#toast{position:fixed;bottom:78px;left:50%;transform:translateX(-50%) translateY(20px);z-index:200;background:#0f172a;color:#fff;padding:11px 20px;border-radius:999px;font-size:.85rem;font-weight:600;box-shadow:var(--sh-lg);opacity:0;pointer-events:none;transition:.3s}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ---------- MISC ---------- */
+.cando-row{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:11px;margin-bottom:7px;background:#fff;transition:.15s}
+.cando-row:hover{border-color:#cbd5e1}
+.cando-row .txt{font-size:.92rem;flex:1}
+.route-row{align-items:flex-start}
+.route-check{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px}
+.route-link{min-height:45px;display:flex;align-items:center;gap:6px;width:100%;padding:3px 0;background:transparent;border:0;color:var(--brand-d);font:600 .95rem inherit;text-align:left;cursor:pointer}
+.route-link:hover{text-decoration:underline}
+.select-choice{width:100%;font:inherit;color:inherit}
+.sem{display:flex;gap:5px}
+.sem button{width:44px;height:44px;border-radius:50%;border:2px solid var(--line);background:#fff;cursor:pointer;font-size:.9rem;transition:.15s;line-height:1}
+.sem button:hover{transform:scale(1.1)}
+.sem button.on{border-color:currentColor;transform:scale(1.08)}
+.sem button[data-c=green].on{background:var(--ok-l);border-color:var(--ok)}
+.sem button[data-c=yellow].on{background:var(--warn-l);border-color:var(--warn)}
+.sem button[data-c=red].on{background:var(--bad-l);border-color:var(--bad)}
+details{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:7px;background:#fff}
+summary{padding:10px 12px;font-size:.85rem;font-weight:600;cursor:pointer;background:#f8fafc;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸ ";color:var(--brand)}
+details[open] summary::before{content:"▾ "}
+details .body{padding:11px 12px;font-size:.87rem;border-top:1px solid var(--line)}
+.role{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;margin-bottom:9px}
+.role i{flex:0 0 auto;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:800;font-size:.75rem;color:#fff}
+ol.steps{padding-left:20px;font-size:.85rem}
+ol.steps li{margin-bottom:7px}
+.hint{font-size:.78rem;color:var(--muted);margin-top:8px}
+.tree-box{background:#f8fafc;border:2px dashed #cbd5e1;border-radius:14px;padding:18px;text-align:center}
+.tree-node{border:2px solid var(--brand);border-radius:11px;background:#fff;padding:9px;min-width:130px;display:flex;flex-direction:column;gap:5px}
+.tree-node.pink{border-color:#ec4899}.tree-node.green{border-color:#22c55e}
+.arrow{color:#94a3b8;font-size:1.4rem}
+@media(max-width:640px){
+  .dock .lbl-hide{display:none}
+  .dock-in{gap:8px}
+  .menu-grid{grid-template-columns:1fr}
+  .nav-shell{padding:6px 10px;gap:8px}
+  .menu-panel{left:10px;right:10px;width:auto}
+  .project-cards{grid-template-columns:1fr!important}
+  header.hero{padding:20px 12px 18px}
+  .kicker{font-size:.68rem;letter-spacing:.12em;margin-bottom:6px}
+  .hero h1{font-size:1.5rem}
+  .family-toggle{max-width:44vw;padding:8px 10px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="hero">
+  <div class="hero-in">
+    <p class="kicker">Programa ELE A1 · Módulo 1 · Identidad y primeros contactos</p>
+    <h1>Repaso Autónomo de la primera clase</h1>
+  </div>
+</header>
+
+<!-- ============ NAV ============ -->
+<nav class="tabs" id="contenido" aria-label="Navegación principal">
+  <div class="nav-shell">
+    <button class="family-toggle" id="btnOpenSetup" type="button" title="Editar datos de la familia" aria-label="Editar datos de la familia">
+      <span aria-hidden="true">👪</span><span id="familyPill">Nuestra familia</span>
+    </button>
+    <button class="menu-toggle" id="btnMenu" type="button" aria-expanded="false" aria-controls="menuPanel">☰ Contenido</button>
+    <div class="menu-panel" id="menuPanel" hidden>
+      <div class="menu-grid" id="tabNav">
+        <button class="menu-item active" type="button" data-tab="ruta" aria-current="page">📅 Ruta</button>
+        <button class="menu-item" type="button" data-tab="herramientas">🧰 Herramientas</button>
+        <button class="menu-item" type="button" data-tab="sonidos">🔊 Sonidos</button>
+        <button class="menu-item" type="button" data-tab="identidad">🪪 Identidad</button>
+        <button class="menu-item" type="button" data-tab="verbos">⚙️ Verbos</button>
+        <button class="menu-item" type="button" data-tab="opuestos">↔️ Opuestos</button>
+        <button class="menu-item" type="button" data-tab="preguntas">❓ Preguntas</button>
+        <button class="menu-item" type="button" data-tab="ortografia">✒️ Ortografía</button>
+        <button class="menu-item" type="button" data-tab="juegos">🎲 Juegos</button>
+        <button class="menu-item" type="button" data-tab="proyecto">🌳 Proyecto</button>
+        <button class="menu-item" type="button" data-tab="autoeval">✅ Autoevaluación</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+  <section id="tab-ruta" class="tab-pane"></section>
+  <section id="tab-herramientas" class="tab-pane hidden"></section>
+  <section id="tab-sonidos" class="tab-pane hidden"></section>
+  <section id="tab-identidad" class="tab-pane hidden"></section>
+  <section id="tab-verbos" class="tab-pane hidden"></section>
+  <section id="tab-opuestos" class="tab-pane hidden"></section>
+  <section id="tab-preguntas" class="tab-pane hidden"></section>
+  <section id="tab-ortografia" class="tab-pane hidden"></section>
+  <section id="tab-juegos" class="tab-pane hidden"></section>
+  <section id="tab-proyecto" class="tab-pane hidden"></section>
+  <section id="tab-autoeval" class="tab-pane hidden"></section>
+</main>
+
+<!-- ============ DOCK ============ -->
+<div class="dock">
+  <div class="dock-in">
+    <div class="ring" id="progressRing" role="progressbar" aria-label="Progreso del dossier" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+        <circle cx="23" cy="23" r="19" fill="none" stroke="#e2e8f0" stroke-width="4"/>
+        <circle id="ringFg" cx="23" cy="23" r="19" fill="none" stroke="#2563eb" stroke-width="4"
+                stroke-linecap="round" stroke-dasharray="119.4" stroke-dashoffset="119.4" style="transition:stroke-dashoffset .5s ease"/>
+      </svg>
+      <span id="ringTxt">0%</span>
+    </div>
+    <span class="chip ok" aria-live="polite">✔ <span id="nOk">0</span></span>
+    <span class="chip ko" aria-live="polite">✗ <span id="nKo">0</span></span>
+    <span class="lbl-hide" style="font-size:.8rem;color:var(--muted)">Progreso del dossier</span>
+    <div class="spacer"></div>
+    <button class="btn btn-ghost btn-sm" id="btnTeacher">👁️ Claves</button>
+    <button class="icon-btn" id="btnReset" title="Reiniciar todo">↺</button>
+  </div>
+</div>
+
+<!-- ============ MODAL ============ -->
+<div class="modal hidden" id="setupModal" role="dialog" aria-modal="true" aria-labelledby="setupTitle" aria-describedby="setupDesc" aria-hidden="true">
+  <div class="modal-box">
+    <button class="modal-x" id="btnCloseSetup" type="button" aria-label="Cerrar">✕</button>
+    <h2 id="setupTitle">Datos de la familia</h2>
+    <p id="setupDesc" style="color:var(--muted);font-size:.92rem;margin-bottom:16px">Personalizá el dossier para el grupo familiar. Podés editar estos datos en cualquier momento.</p>
+    <div class="field">
+      <label class="lbl" for="familyName">Apellido de la familia</label>
+      <input type="text" id="familyName" placeholder="Ej.: Benali" autocomplete="off">
+    </div>
+    <div class="field">
+      <label class="lbl">Los 3 integrantes</label>
+      <div class="grid g3" style="gap:8px">
+        <input type="text" id="member1" placeholder="Integrante 1" aria-label="Integrante 1" autocomplete="off">
+        <input type="text" id="member2" placeholder="Integrante 2" aria-label="Integrante 2" autocomplete="off">
+        <input type="text" id="member3" placeholder="Integrante 3" aria-label="Integrante 3" autocomplete="off">
+      </div>
+    </div>
+    <div class="field">
+      <label class="lbl" for="varietySelect">Variedad de español</label>
+      <select id="varietySelect">
+        <option value="peninsular">España · ce/ci/z = /θ/ (como la «th» inglesa)</option>
+        <option value="latam">América Latina · ce/ci/z = /s/</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" id="btnStart" type="button" style="width:100%;margin-top:6px">Guardar cambios</button>
+    <p class="hint" style="text-align:center;margin-top:10px">Podés cerrar con <b>✕</b> sin guardar los cambios.</p>
+  </div>
+</div>
+
+<div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   0. ALMACENAMIENTO SEGURO (no depende de localStorage)
+   ══════════════════════════════════════════════════════════════ */
+const KEY='ele_a1_dossier_v3';
+const mem={};
+function sGet(k){try{const v=window.localStorage.getItem(k);return v===null?(mem[k]??null):v}catch(e){return mem[k]??null}}
+function sSet(k,v){mem[k]=v;try{window.localStorage.setItem(k,v)}catch(e){}}
+
+function blank(){return{family:'Nuestra familia',members:['Miembro 1','Miembro 2','Miembro 3'],variety:'peninsular',
+  answers:{},checked:{},route:{},canDo:{},texts:{},proj:[{},{},{}],errors:[],
+  domino:[],spell:[],teacher:false}}
+let S=read();
+function read(){try{const r=sGet(KEY);if(!r)return blank();const p=JSON.parse(r);const b=blank();const defaults={family:b.family,members:b.members.slice()};const merged=Object.assign(b,p);if(!merged.family)merged.family=defaults.family;if(!Array.isArray(merged.members)||merged.members.length!==3)merged.members=defaults.members.slice();else merged.members=merged.members.map((m,i)=>String(m||'').trim()||defaults.members[i]);return merged}catch(e){return blank()}}
+function save(){sSet(KEY,JSON.stringify(S))}
+
+/* ══════════════════════════════════════════════════════════════
+   1. UTILIDADES
+   ══════════════════════════════════════════════════════════════ */
+const $=s=>document.querySelector(s);
+const $$=s=>Array.from(document.querySelectorAll(s));
+function norm(s){return String(s==null?'':s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+  .replace(/[¿?¡!.,;:"'«»()]/g,'').replace(/\s+/g,' ').trim()}
+const LMAP={a:'a',be:'b',b:'b',ce:'c',c:'c',de:'d',d:'d',e:'e',efe:'f',f:'f',ge:'g',g:'g',hache:'h',h:'h',
+  jota:'j',j:'j',ka:'k',k:'k',ele:'l',l:'l',eme:'m',m:'m',ene:'n',n:'n','eñe':'ñ',ñ:'ñ',o:'o',pe:'p',p:'p',
+  cu:'q',q:'q',erre:'r',r:'r',ese:'s',s:'s',te:'t',t:'t',u:'u',uve:'v',v:'v','uve doble':'w',w:'w',
+  equis:'x',x:'x',ye:'y',y:'y','i griega':'y',zeta:'z',z:'z'};
+function lnorm(t){t=String(t||'').toLowerCase().trim().replace(/[.\-_,;:\s]/g,'').replace(/[áéíóúü]/g,m=>({'á':'a','é':'e','í':'i','ó':'o','ú':'u','ü':'u'}[m]));return LMAP[t]||t}
+function toast(msg,ms=2200){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),ms)}
+
+/* ══════════════════════════════════════════════════════════════
+   2. DATOS DE TAREAS
+   ══════════════════════════════════════════════════════════════ */
+const TASKS={
+/* ---------- SONIDOS ---------- */
+'s1_2':{type:'choice',t:'1.2 Pares mínimos /p/ ~ /b/',c:'Elige la palabra correcta. Mano delante de la boca: <b>/p/</b> sopla aire, <b>/b/</b> no sopla y vibra la garganta.',items:[
+ {q:'Mi ___ es médico.',o:['padre','badre'],a:0,r:'/p/ en <i>padre</i>; "badre" no existe.'},
+ {q:'La comida de este restaurante tiene poco ___.',o:['peso','beso'],a:0,r:'peso = cantidad que pesa algo.'},
+ {q:'En la fiesta vamos a ___.',o:['pailar','bailar'],a:1,r:'"pailar" no existe en español.'},
+ {q:'El ___ está en el horno con patatas.',o:['pollo','bollo'],a:0,r:'pollo (con /p/) = comida; bollo = panecillo.'},
+ {q:'Marta da un ___ a su abuela.',o:['peso','beso'],a:1,r:'beso (con /b/) = muestra de cariño.'},
+ {q:'Compramos un ___ de naranjas.',o:['kilo','bilo'],a:0,r:'kilo se escribe con K y suena /p/… no: suena /k/.'}]},
+
+'s1_3':{type:'choice',t:'1.3 Diptongos ie / ue (foco arabófono)',c:'Los diptongos <b>ie</b> y <b>ue</b> no existen en árabe: no los reduzcáis a una sola vocal. Elige la forma correcta.',items:[
+ {q:'Yo ___ aprender español.',o:['quiero','quero'],a:0,r:'querer → qu<b>ie</b>ro (e → ie).'},
+ {q:'Mi hermano ___ a las ocho.',o:['viene','vene'],a:0,r:'venir → v<b>ie</b>ne.'},
+ {q:'Yo me ___ el café en el microondas.',o:['caliento','calento'],a:0,r:'calentar → cal<b>ie</b>nto.'},
+ {q:'Nosotros ___ en Madrid.',o:['vivimos','vivemos'],a:0,r:'vivir es -IR regular: no diptonga.'},
+ {q:'Ellos ___ dos hijos.',o:['tienen','tenen'],a:0,r:'tener → t<b>ie</b>nen.'},
+ {q:'La puerta del salón es ___ .',o:['nueva','neva'],a:0,r:'nuevo conserva el diptongo ue.'}]},
+
+'s1_4':{type:'syll',t:'1.4 La sílaba fuerte (el acento léxico)',c:'Haz clic en la sílaba tónica. <b>Regla:</b> termina en vocal, -n o -s → penúltima; otra consonante → última; si lleva tilde, manda la tilde.',items:[
+ {w:'familia',s:['fa','mi','lia'],a:1},{w:'médico',s:['mé','di','co'],a:0},{w:'español',s:['es','pa','ñol'],a:2},
+ {w:'mesa',s:['me','sa'],a:0},{w:'reloj',s:['re','loj'],a:1},{w:'miércoles',s:['miér','co','les'],a:1},
+ {w:'hermano',s:['her','ma','no'],a:1},{w:'cumpleaños',s:['cum','ple','a','ños'],a:2},
+ {w:'Casablanca',s:['ca','sa','blan','ca'],a:2},{w:'café',s:['ca','fé'],a:1},
+ {w:'autobús',s:['au','to','bús'],a:2},{w:'profesora',s:['pro','fe','so','ra'],a:2}]},
+
+'s1_6':{type:'choice',t:'1.6 Elige la grafía correcta (c · qu · k · z · s · h)',c:'Selecciona la letra o el grupo que completa la palabra.',items:[
+ {q:'El ___afé de mi padre está muy caliente.',o:['c','k','z'],a:0,r:'CA = /ka/ fuerte.'},
+ {q:'Mañana voy al ___ine a las siete.',o:['c','k','s'],a:0,r:'CI = suave (/θ/ o /s/).'},
+ {q:'Necesito un ___ilo de naranjas.',o:['c','k','qu'],a:1,r:'KILO: palabra con K, sonido /k/.'},
+ {q:'La ___asa de mi familia es grande.',o:['c','z','s'],a:0,r:'CA = /ka/.'},
+ {q:'El número ___ero empieza por esa letra.',o:['c','s','z'],a:0,r:'CE = suave.'},
+ {q:'El ___ol ilumina la ventana.',o:['c','s','z'],a:1,r:'SOL se escribe con S.'},
+ {q:'Yo ___iero aprender español.',o:['c','qu','k'],a:1,r:'Delante de I, el sonido /k/ necesita QU.'},
+ {q:'Mi hermano come mucho ___ueso.',o:['c','qu','h'],a:2,r:'HUESO: la H es muda.'},
+ {q:'Mi prima tiene die___ años.',o:['s','z','c'],a:1,r:'DIEZ termina en Z.'},
+ {q:'Vivimos en Zara___o___a.',o:['g','z','s'],a:1,r:'ZARAGOZA con Z (sonido suave).'}]},
+
+'s1_7':{type:'spell',t:'1.7 Deletreo profesional',c:'Escribe el deletreo letra a letra, separado por guiones o espacios. Ejemplo: <b>MANO → eme-a-ene-o</b>.',items:[
+ {w:'APELLIDO',a:['a','pe','ele','ele','ele','i','de','o']},
+ {w:'MÉDICO',a:['eme','e','de','i','ce','o']},
+ {w:'FRANCESA',a:['efe','erre','a','ene','ce','e','ese','a']},
+ {w:'CORREO',a:['ce','o','erre','erre','e','o']},
+ {w:'CUMPLEAÑOS',a:['ce','u','eme','pe','ele','e','a','eñe','o','ese']},
+ {w:'QUIERO',a:['cu','u','i','e','erre','o']},
+ {w:'ZAPATO',a:['zeta','a','pe','a','te','o']},
+ {w:'HERMANO',a:['hache','e','erre','eme','a','ene','o']}]},
+
+/* ---------- IDENTIDAD ---------- */
+'i2_1':{type:'fill',grid:3,t:'2.1 Recupera la tabla de memoria',c:'Escribe las formas de <b>SER</b> y <b>LLAMARSE</b> sin mirar la Caja de Herramientas.',items:[
+ {q:'yo · SER',a:'soy'},{q:'yo · LLAMARSE',a:'me llamo'},{q:'tú · SER',a:'eres'},
+ {q:'tú · LLAMARSE',a:'te llamas'},{q:'él/ella/usted · SER',a:'es'},{q:'él/ella/usted · LLAMARSE',a:'se llama'},
+ {q:'nosotros/as · SER',a:'somos'},{q:'nosotros/as · LLAMARSE',a:'nos llamamos'},
+ {q:'vosotros/as · SER',a:'sois'},{q:'vosotros/as · LLAMARSE',a:'os llamáis'},
+ {q:'ellos/ustedes · SER',a:'son'},{q:'ellos/ustedes · LLAMARSE',a:'se llaman'}]},
+
+'i2_2':{type:'fill',t:'2.2 Sustituye el sujeto y conjuga SER',c:'Escribe el pronombre + la forma correcta del verbo.',items:[
+ {q:'[Karim y yo] ___ de Marruecos.',a:'somos',acc:['nosotros somos']},
+ {q:'[Amina y Sarah] ___ abogadas en Casablanca.',a:'son',acc:['ellas son']},
+ {q:'[El señor Ramírez] ___ el nuevo vecino del edificio.',a:'es',acc:['él es']},
+ {q:'[Tú y tu hermano] ___ muy atentos con la familia.',a:'sois',acc:['vosotros sois']},
+ {q:'[La señora Dupont] Ella ___ la profesora de francés.',a:'es'},
+ {q:'[Mi madre] ___ una persona muy trabajadora.',a:'es',acc:['ella es']},
+ {q:'[Yo] ___ estudiante de español.',a:'soy',acc:['yo soy']},
+ {q:'[Usted] ___ muy amable, señor.',a:'es',acc:['usted es']}]},
+
+'i2_3':{type:'fill',t:'2.3 Nacionalidades: concordancia masc. / fem.',c:'Completa con la forma correcta del adjetivo de nacionalidad.',items:[
+ {q:'Mi padre es de Francia: es ___.',a:'francés',acc:['frances']},
+ {q:'Mi madre es de Francia: es ___.',a:'francesa'},
+ {q:'Yo soy de Marruecos: soy ___.',a:'marroquí',acc:['marroqui']},
+ {q:'Mi hermana es de España: es ___.',a:'española',acc:['espanola']},
+ {q:'Nosotros somos de Siria: somos ___.',a:'sirios'},
+ {q:'Ellas son de Italia: son ___.',a:'italianas'},
+ {q:'¿Tú eres de México? Sí, soy ___.',a:'mexicano'},
+ {q:'Los vecinos son de Argelia: son ___.',a:'argelinos'}]},
+
+'i2_4':{type:'select',t:'2.4 Caza-artículos: marca donde el artículo SOBRA',c:'Haz clic en las frases incorrectas. Recuerda: <b>profesión sin artículo</b> (calco del francés <i>je suis un professeur</i>).',sel:'Marcar como incorrecta',items:[
+ {t:'Soy un ingeniero.',s:true},{t:'Ella es una médica.',s:true},{t:'Somos unos estudiantes.',s:true},
+ {t:'Mi padre es un profesor.',s:true},{t:'¿Usted es una abogada?',s:true},{t:'Ellos son unos médicos.',s:true},
+ {t:'Mi hermana es una francesa.',s:false},{t:'Yo soy un cocinero.',s:true},{t:'Es un enfermero.',s:true},
+ {t:'Somos unas personas trabajadoras.',s:false}]},
+
+'i2_5':{type:'err',t:'2.5 Clínica de errores (árabe y francés → español)',c:'Escribe la frase corregida. Después verás la regla y el origen del error.',items:[
+ {w:'Yo un ingeniero informático muy preparado.',a:'Yo soy ingeniero informático muy preparado.',r:'Falta el verbo copulativo <b>ser</b> (calco de la oración nominal árabe) y la profesión va sin artículo.',acc:['yo soy ingeniero informático muy preparado']},
+ {w:'Mi hermana es una médica en el hospital central.',a:'Mi hermana es médica en el hospital central.',r:'Artículo indebido con profesión (calco del francés <i>une médecin</i>).',acc:['mi hermana es medica en el hospital central']},
+ {w:'Él profesor de español en la universidad.',a:'Él es profesor de español en la universidad.',r:'Omisión del verbo <b>ser</b>.',acc:['el es profesor de español en la universidad','él es profesor de español en la universidad']},
+ {w:'Yo marroquí y mi mujer francesa.',a:'Yo soy marroquí y mi mujer es francesa.',r:'En español el verbo <b>ser</b> es obligatorio en las dos partes.',acc:['yo soy marroqui y mi mujer es francesa']},
+ {w:'Cómo te llamas tú?',a:'¿Cómo te llamas tú?',r:'Falta el signo de apertura <b>¿</b>, obligatorio en español.',acc:['como te llamas tu']},
+ {w:'Mi Hermano es Alto y Moreno.',a:'Mi hermano es alto y moreno.',r:'Mayúsculas solo en inicio de frase y nombres propios: el árabe no distingue mayúsculas/minúsculas.',acc:['mi hermano es alto y moreno']},
+ {w:'Nosotros somos unos estudiantes de primer nivel.',a:'Nosotros somos estudiantes de primer nivel.',r:'Artículo indeterminado plural innecesario con la profesión/condición.',acc:['nosotros somos estudiantes de primer nivel']},
+ {w:'Badre es médico; su nombre es Paco.',a:'Padre es médico; su nombre es Paco.',r:'/p/ sustituido por /b/: el fonema /p/ no existe en el alfabeto árabe.',acc:['padre es medico su nombre es paco','padre es médico; su nombre es paco']}]},
+
+/* ---------- VERBOS ---------- */
+'v3_1':{type:'fill',t:'3.1 Texto integrado: presente regular',c:'Conjuga el verbo entre paréntesis en presente de indicativo.',items:[
+ {q:'Mi familia y yo ___ (vivir) en Madrid desde hace un año.',a:'vivimos'},
+ {q:'Todos los días nosotros ___ (comer) juntos a las tres.',a:'comemos'},
+ {q:'Yo ___ (trabajar) en una empresa internacional.',a:'trabajo'},
+ {q:'… y ___ (hablar) tres idiomas.',a:'hablo'},
+ {q:'Mis hijos ___ (estudiar) en el colegio cercano.',a:'estudian'},
+ {q:'… y ___ (escribir) sus tareas por la tarde.',a:'escriben'},
+ {q:'Mi mujer ___ (beber) mucho café.',a:'bebe'},
+ {q:'Mi mujer ___ (leer) el periódico por la noche.',a:'lee'},
+ {q:'Y tú, ¿___ (comprender) bien esta lección?',a:'comprendes'}]},
+
+'v3_2':{type:'fill',t:'3.2 QUERER (e → ie) y SER',c:'Aplica la diptongación y la flexión irregular.',items:[
+ {q:'Mis hijos ___ (querer) aprender español para viajar.',a:'quieren'},
+ {q:'Yo ___ (querer) un café con leche sin azúcar, por favor.',a:'quiero'},
+ {q:'Nosotros ___ (ser) una familia muy unida.',a:'somos'},
+ {q:'… y ___ (querer) hacer un viaje juntos.',a:'queremos',note:'Nosotros NO diptonga.'},
+ {q:'¿Usted ___ (querer) hablar con el director?',a:'quiere'},
+ {q:'¿Vosotros ___ (ser) los nuevos alumnos de la clase?',a:'sois'},
+ {q:'Ella ___ (querer) mucho a su hermano pequeño.',a:'quiere'},
+ {q:'Mis padres ___ (ser) médicos.',a:'son'}]},
+
+'v3_3':{type:'fill',t:'3.3 Cambia el sujeto (nivel alto)',c:'Transforma la frase completa con el nuevo sujeto.',items:[
+ {q:'Yo hablo francés. → Nosotros ___',a:'hablamos',acc:['nosotros hablamos']},
+ {q:'Tú comes a las dos. → Vosotros ___',a:'coméis',acc:['comeis','vosotros coméis','vosotros comeis']},
+ {q:'Ella vive en Lyon. → Ellas ___',a:'viven',acc:['ellas viven']},
+ {q:'Yo quiero un té. → Mi hermano ___',a:'quiere',acc:['mi hermano quiere']},
+ {q:'Nosotros somos marroquíes. → Yo ___',a:'soy marroquí',acc:['soy marroqui','yo soy marroquí','yo soy marroqui']},
+ {q:'Tú eres médico. → Ustedes ___',a:'son médicos',acc:['son medicos','ustedes son médicos','ustedes son medicos']},
+ {q:'Ellos escriben un correo. → Yo ___',a:'escribo un correo',acc:['escribo']},
+ {q:'Vosotras habláis español. → Ella ___',a:'habla español',acc:['habla']}]},
+
+/* ---------- OPUESTOS ---------- */
+'o4_1':{type:'match',t:'4.1 Matriz de opuestos',c:'Escribe el antónimo de cada palabra.',items:[
+ {w:'más',a:'menos'},{w:'grande',a:'pequeño',acc:['pequeno']},{w:'alto',a:'bajo'},
+ {w:'mucho',a:'poco'},{w:'bueno',a:'malo'},{w:'rápido',a:'lento',acc:['rapido']},
+ {w:'joven',a:'mayor'},{w:'caro',a:'barato',acc:['barata']},{w:'nuevo',a:'viejo'}]},
+
+'o4_2':{type:'choice',t:'4.2 Elige: mucho / mucha / muchos / muchas',c:'Fíjate en el género y el número del sustantivo.',items:[
+ {q:'En mi familia hay ___ personas: somos nueve.',o:['mucho','mucha','muchos','muchas'],a:3,r:'personas = femenino plural.'},
+ {q:'Yo bebo ___ agua en verano.',o:['mucho','mucha','muchos','muchas'],a:1,r:'agua = femenino singular (aunque empiece por a- tónica).'},
+ {q:'Mi hermano tiene ___ libros de gramática.',o:['mucho','mucha','muchos','muchas'],a:2,r:'libros = masculino plural.'},
+ {q:'Hoy hace ___ calor en Casablanca.',o:['mucho','mucha','muchos','muchas'],a:0,r:'calor = masculino singular.'},
+ {q:'No quiero ___ azúcar en el café, gracias.',o:['mucho','mucha','muchos','muchas'],a:1,r:'azúcar se usa sobre todo en femenino: mucha azúcar (también se acepta «mucho azúcar»).'},
+ {q:'En la clase hay ___ estudiantes francesas.',o:['mucho','mucha','muchos','muchas'],a:3,r:'estudiantes francesas = femenino plural.'}]},
+
+'o4_3':{type:'fill',t:'4.3 Concordancia: corrige el adjetivo',c:'Escribe solo la forma corregida del adjetivo.',items:[
+ {q:'Mi madre es <s>trabajador</s>. →',a:'trabajadora'},
+ {q:'Los zapatos nuevos son <s>caro</s>. →',a:'caros'},
+ {q:'Mis hermanas son <s>alto</s>. →',a:'altas'},
+ {q:'El café está frío; la sopa está <s>frío</s>. →',a:'fría',acc:['fria']},
+ {q:'Nosotros somos <s>marroquí</s>. →',a:'marroquíes',acc:['marroquies']}]},
+
+/* ---------- PREGUNTAS ---------- */
+'q5_1':{type:'choice',t:'5.1 ¿Cuánto / Cuánta / Cuántos / Cuántas / Cuándo?',c:'Elige el interrogativo correcto según la concordancia o el sentido temporal.',items:[
+ {q:'¿___ personas hay en la reunión de hoy?',o:['Cuánto','Cuánta','Cuántos','Cuántas','Cuándo'],a:3,r:'personas = femenino plural.'},
+ {q:'¿___ es el examen final del Módulo 1?',o:['Cuánto','Cuánta','Cuántos','Cuántas','Cuándo'],a:4,r:'Pregunta por tiempo → cuándo.'},
+ {q:'¿___ cuesta el libro de texto?',o:['Cuánto','Cuánta','Cuántos','Cuántas','Cuándo'],a:0,r:'Precio: masculino singular.'},
+ {q:'¿___ agua bebes durante la clase?',o:['Cuánto','Cuánta','Cuántos','Cuántas','Cuándo'],a:1,r:'agua: femenino singular.'},
+ {q:'¿___ es el cumpleaños de tu madre?',o:['Cuánto','Cuánta','Cuántos','Cuántas','Cuándo'],a:4,r:'Fecha → cuándo.'},
+ {q:'¿___ hermanos tienes en tu familia?',o:['Cuánto','Cuánta','Cuántos','Cuántas','Cuándo'],a:2,r:'hermanos: masculino plural.'},
+ {q:'¿___ café quieres: mucho o poco?',o:['Cuánto','Cuánta','Cuántos','Cuántas','Cuándo'],a:0,r:'café: masculino singular.'},
+ {q:'¿___ empieza la clase: a las seis o a las siete?',o:['Cuánto','Cuánta','Cuántos','Cuántas','Cuándo'],a:4,r:'Momento → cuándo.'}]},
+
+'q5_2':{type:'fill',t:'5.2 Escribe la pregunta que corresponde a la respuesta',c:'Usa ¿Cuánto/a/os/as? o ¿Cuándo? (y los interrogativos de la Clase 1). No olvides <b>¿</b> y <b>?</b>.',items:[
+ {q:'R: La clase de español empieza a las seis de la tarde.',a:'¿Cuándo empieza la clase de español?',acc:['cuando empieza la clase de español']},
+ {q:'R: En mi familia hay tres personas.',a:'¿Cuántas personas hay en tu familia?',acc:['cuantas personas hay en tu familia','cuantos sois en tu familia','cuantas personas hay en la familia']},
+ {q:'R: Mi viaje a España es en el mes de septiembre.',a:'¿Cuándo es tu viaje a España?',acc:['cuando es tu viaje a españa','cuando es tu viaje a espana']},
+ {q:'R: Este ordenador cuesta seiscientos euros.',a:'¿Cuánto cuesta este ordenador?',acc:['cuanto cuesta este ordenador']},
+ {q:'R: Tengo dos hermanos.',a:'¿Cuántos hermanos tienes?',acc:['cuantos hermanos tienes']},
+ {q:'R: Mi hermana se llama Amina.',a:'¿Cómo se llama tu hermana?',acc:['como se llama tu hermana']},
+ {q:'R: Soy de Marruecos.',a:'¿De dónde eres?',acc:['de donde eres']},
+ {q:'R: Bebo mucha agua, dos litros al día.',a:'¿Cuánta agua bebes?',acc:['cuanta agua bebes']}]},
+
+'q5_3':{type:'fill',t:'5.3 Ortografía de la pregunta',c:'Reescribe la pregunta con <b>¿</b>, <b>?</b>, tildes y mayúscula inicial.',items:[
+ {q:'cuando es tu cumpleaños',a:'¿Cuándo es tu cumpleaños?',acc:['cuando es tu cumpleaños']},
+ {q:'cuantos años tienes',a:'¿Cuántos años tienes?',acc:['cuantos años tienes','cuantos anios tienes']},
+ {q:'como se llama usted',a:'¿Cómo se llama usted?',acc:['como se llama usted']},
+ {q:'cuanto cuesta este libro',a:'¿Cuánto cuesta este libro?',acc:['cuanto cuesta este libro']},
+ {q:'donde vives ahora',a:'¿Dónde vives ahora?',acc:['donde vives ahora']},
+ {q:'que quieres beber',a:'¿Qué quieres beber?',acc:['que quieres beber']}]},
+
+/* ---------- ORTOGRAFÍA ---------- */
+'orth6_1':{type:'fill',t:'6.1 Corrige las mayúsculas',c:'Reescribe la frase con las mayúsculas correctas (el árabe no tiene mayúsculas: en español solo al inicio de frase y en nombres propios).',items:[
+ {q:'Mi Hermano vive en Casablanca.',a:'Mi hermano vive en Casablanca.'},
+ {q:'yo soy Médico y mi Madre es francesa.',a:'Yo soy médico y mi madre es francesa.'},
+ {q:'El Lunes empieza el Curso de español.',a:'El lunes empieza el curso de español.'},
+ {q:'Hola, me Llamo Sophie Martin.',a:'Hola, me llamo Sophie Martin.'},
+ {q:'somos una Familia grande y unida.',a:'Somos una familia grande y unida.'},
+ {q:'Mi país es Marruecos, y Mi ciudad es Fez.',a:'Mi país es Marruecos y mi ciudad es Fez.',acc:['mi país es marruecos, y mi ciudad es fez','mi pais es marruecos y mi ciudad es fez']}]},
+
+'orth6_2':{type:'choice',t:'6.2 ¿Lleva tilde?',c:'Elige la forma correcta.',items:[
+ {q:'el doctor',o:['médico','medico'],a:0,r:'Esdrújula → siempre tilde.'},
+ {q:'la familia',o:['fámilia','familia'],a:1,r:'Llana terminada en vocal → sin tilde.'},
+ {q:'de España',o:['españól','español'],a:1,r:'Aguda terminada en -l → sin tilde.'},
+ {q:'el día de la semana',o:['miércoles','miercoles'],a:0,r:'Esdrújula → siempre tilde.'},
+ {q:'el transporte',o:['autobús','autobus'],a:0,r:'Aguda terminada en -s → tilde.'},
+ {q:'la bebida caliente',o:['café','cafe'],a:0,r:'Aguda terminada en vocal → tilde.'},
+ {q:'la cantidad',o:['número','numero'],a:0,r:'Esdrújula → siempre tilde.'},
+ {q:'la lengua',o:['árabe','arabe'],a:0,r:'Esdrújula → siempre tilde.'}]},
+
+'orth6_3':{type:'fill',t:'6.3 h · ñ · b/v',c:'Escribe la palabra completa correctamente.',items:[
+ {q:'___ermano (h / j)',a:'hermano'},
+ {q:'Tengo veinte ___os. (ñ / n)',a:'años',acc:['anos']},
+ {q:'___uenos días (b / v)',a:'buenos'},
+ {q:'___ola, ¿qué tal? (h / j)',a:'hola'},
+ {q:'Vivo en Espa___a. (ñ / n)',a:'España',acc:['Espana']},
+ {q:'En agosto tenemos ___acaciones. (b / v)',a:'vacaciones'}]}
+};
+
+/* ---------- DOMINÓ ---------- */
+const DOM=[
+{id:1,top:'¡Hola! Buenos días. Me llamo Ana Ruiz.',bot:'¿Cómo te llamas?',start:true},
+{id:2,top:'Me llamo Karim Benali.',bot:'¿Cómo se llama usted?'},
+{id:3,top:'Me llamo Sophie Martin. Mucho gusto.',bot:'¿Cómo se deletrea "Benali"?'},
+{id:4,top:'B-E-N-A-L-I.',bot:'¿De dónde eres?'},
+{id:5,top:'Soy de Marruecos, de Casablanca.',bot:'¿De dónde es usted?'},
+{id:6,top:'Soy de Francia, de Lyon.',bot:'¿Cuál es tu nacionalidad?'},
+{id:7,top:'Soy marroquí.',bot:'¿Tu madre es marroquí?'},
+{id:8,top:'No, mi madre es francesa.',bot:'¿Cuál es la profesión de tu madre?'},
+{id:9,top:'Mi madre es médica.',bot:'¿Y tu padre? ¿Cuál es su profesión?'},
+{id:10,top:'Mi padre es ingeniero.',bot:'¿Cuántas personas hay en tu familia?'},
+{id:11,top:'En mi familia somos tres.',bot:'¿Cuántos hermanos tienes?'},
+{id:12,top:'Tengo dos: un hermano y una hermana.',bot:'¿Cómo se llama tu hermano?'},
+{id:13,top:'Mi hermano se llama Youssef.',bot:'¿Cuántos años tiene Youssef?'},
+{id:14,top:'Youssef tiene quince años.',bot:'¿Cuándo es su cumpleaños?'},
+{id:15,top:'Su cumpleaños es el diez de marzo.',bot:'¿Cuánto cuesta el libro de español?'},
+{id:16,top:'El libro cuesta veinte euros.',bot:'¿Cuánta agua bebes cada día?'},
+{id:17,top:'Bebo un litro de agua cada día.',bot:'¿Cuándo empieza la clase de español?'},
+{id:18,top:'Empieza el lunes a las seis.',bot:'¿Qué quieres beber ahora?'},
+{id:19,top:'Quiero un café con leche, por favor.',bot:'¿Quieres té o café?'},
+{id:20,top:'No quiero té: quiero café.',bot:'¿Cómo es tu casa?'},
+{id:21,top:'Mi casa es grande y luminosa.',bot:'¿Tu casa es grande o pequeña?'},
+{id:22,top:'No es pequeña; es grande.',bot:'¿Tú eres alto o bajo?'},
+{id:23,top:'Yo soy alto, pero mi hermana es baja.',bot:'¿Sois una familia grande?'},
+{id:24,top:'Sí, somos una familia grande y unida.',bot:'¿Cuántos años tiene tu hija?'},
+{id:25,top:'Mi hija Sara tiene ocho años.',bot:'¿Cuál es tu correo electrónico?'},
+{id:26,top:'Es «ana punto ruiz arroba ele punto es».',bot:'¿Cómo se deletrea «correo»?'},
+{id:27,top:'C-O-R-R-E-O.',bot:'¿La «c» de «casa» y la «c» de «cine» suenan igual?'},
+{id:28,top:'No: «ca» es fuerte y «ci» es suave.',bot:'¿Qué palabra se escribe con «k»?'},
+{id:29,top:'«Kilo» se escribe con k: K-I-L-O.',bot:'¿Qué quieres aprender en la clase de español?'},
+{id:30,top:'Quiero aprender a presentarme y a hablar de mi familia.',bot:'¿Cómo te llamas?'}
+];
+
+/* ---------- HERRAMIENTAS ---------- */
+const TOOLS=[
+{i:'🔤',t:'0.1 Abecedario (27 letras) y deletreo',b:`<table class="mini"><tr><td>A · a</td><td>J · jota</td><td>R · erre</td></tr><tr><td>B · be</td><td>K · ka</td><td>S · ese</td></tr><tr><td>C · ce</td><td>L · ele</td><td>T · te</td></tr><tr><td>D · de</td><td>M · eme</td><td>U · u</td></tr><tr><td>E · e</td><td>N · ene</td><td>V · uve</td></tr><tr><td>F · efe</td><td>Ñ · eñe</td><td>W · uve doble</td></tr><tr><td>G · ge</td><td>O · o</td><td>X · equis</td></tr><tr><td>H · hache</td><td>P · pe</td><td>Y · ye / i griega</td></tr><tr><td>I · i</td><td>Q · cu</td><td>Z · zeta</td></tr></table><p class="hint"><b>Modelo:</b> MANO → eme-a-ene-o · RUIZ → erre-u-i-zeta · LÓPEZ → ele-o-pe-e-zeta</p>`},
+{i:'📝',t:'0.2 Reglas de C · K · QU · Z · S',b:`<table class="mini"><tr><th>Sonido</th><th>Grafía</th><th>Ejemplos</th></tr><tr><td>/ka/ fuerte</td><td><b>ca, co, cu</b></td><td>casa, coche, cuna</td></tr><tr><td>/ka/ fuerte</td><td><b>que, qui</b></td><td>queso, quiero</td></tr><tr><td>/ka/ fuerte</td><td><b>k</b></td><td>kilo, karaoke</td></tr><tr><td>/θ/ o /s/ suave</td><td><b>ce, ci</b></td><td>cero, cine, cinco</td></tr><tr><td>/θ/ o /s/ suave</td><td><b>z</b></td><td>zapato, diez, feliz</td></tr><tr><td>/s/ siempre</td><td><b>s</b></td><td>sol, seis, francés</td></tr></table><p class="hint"><b>Truco:</b> delante de a, o, u la <i>c</i> es fuerte; delante de e, i es suave y, si quieres el sonido fuerte, necesitas <b>qu</b>.</p>`},
+{i:'✏️',t:'0.3 Ortografía «modo español» (6 diferencias)',b:`<ol class="steps"><li><b>Signos dobles:</b> ¿…? y ¡…! se abren y se cierran.</li><li><b>Tildes obligatorias:</b> médico, español, número, día, café, miércoles.</li><li><b>Mayúsculas</b> solo al inicio de frase y en nombres propios (los días y los meses van en minúscula).</li><li><b>La h es siempre muda:</b> hola, hermano, hospital.</li><li><b>Enumeraciones con coma:</b> alto, moreno y simpático (no repetir «y»).</li><li><b>b y v suenan igual</b> (/b/): bueno, Valencia, vacaciones.</li></ol>`},
+{i:'🔗',t:'0.4 SER y LLAMARSE + las 3 reglas de oro',b:`<table class="mini"><tr><th>Pronombre</th><th>SER</th><th>LLAMARSE</th></tr><tr><td>yo</td><td>soy</td><td>me llamo</td></tr><tr><td>tú</td><td>eres</td><td>te llamas</td></tr><tr><td>él / ella / usted</td><td>es</td><td>se llama</td></tr><tr><td>nosotros/as</td><td>somos</td><td>nos llamamos</td></tr><tr><td>vosotros/as</td><td>sois</td><td>os llamáis</td></tr><tr><td>ellos / ustedes</td><td>son</td><td>se llaman</td></tr></table><div class="box red" style="margin-top:10px"><b>Regla 1:</b> siempre hay verbo → ❌ <i>Yo marroquí</i> ✅ <i>Yo soy marroquí</i>.<br><b>Regla 2:</b> profesión sin artículo → ❌ <i>Soy un médico</i> ✅ <i>Soy médico</i>.<br><b>Regla 3:</b> el pronombre sujeto normalmente se omite (en francés no) → ✅ <i>Soy ingeniero</i>.</div>`},
+{i:'⚡',t:'0.5 Presente regular + QUERER',b:`<table class="mini"><tr><th></th><th>-AR hablar</th><th>-ER comer</th><th>-IR vivir</th><th>QUERER</th></tr><tr><td>yo</td><td>habl<b>o</b></td><td>com<b>o</b></td><td>viv<b>o</b></td><td>qu<b>ie</b>ro</td></tr><tr><td>tú</td><td>habl<b>as</b></td><td>com<b>es</b></td><td>viv<b>es</b></td><td>qu<b>ie</b>res</td></tr><tr><td>él/usted</td><td>habl<b>a</b></td><td>com<b>e</b></td><td>viv<b>e</b></td><td>qu<b>ie</b>re</td></tr><tr><td>nosotros</td><td>habl<b>amos</b></td><td>com<b>emos</b></td><td>viv<b>imos</b></td><td>queremos</td></tr><tr><td>vosotros</td><td>habl<b>áis</b></td><td>com<b>éis</b></td><td>viv<b>ís</b></td><td>queréis</td></tr><tr><td>ellos/ustedes</td><td>habl<b>an</b></td><td>com<b>en</b></td><td>viv<b>en</b></td><td>qu<b>ie</b>ren</td></tr></table>`},
+{i:'🌍',t:'0.6 Nacionalidades',b:`<table class="mini"><tr><th>País</th><th>Él es…</th><th>Ella es…</th></tr><tr><td>Marruecos</td><td>marroquí</td><td>marroquí</td></tr><tr><td>Francia</td><td>francés</td><td>francesa</td></tr><tr><td>España</td><td>español</td><td>española</td></tr><tr><td>Argelia</td><td>argelino</td><td>argelina</td></tr><tr><td>Siria</td><td>sirio</td><td>siria</td></tr><tr><td>México</td><td>mexicano</td><td>mexicana</td></tr><tr><td>Italia</td><td>italiano</td><td>italiana</td></tr></table>`},
+{i:'👨‍👩‍👧',t:'0.7 Familia, posesivos y mini-glosario',b:`<p class="mini"><b>Posesivos:</b> mi/mis · tu/tus · su/sus · nuestro/a/os/as · vuestro/a/os/as</p><p class="mini"><b>Miembros:</b> abuelo/a · padre · madre · hijo/a · hermano/a · tío/a · primo/a · marido · mujer</p><p class="mini" style="margin-top:8px"><b>FR:</b> mon/ma → mi · ton/ta → tu · son/sa → su · notre → nuestro</p><p class="mini"><b>AR:</b> عائلة = familia · اسم = nombre · مهنة = profesión · أب = padre · أم = madre · أخ = hermano · أخت = hermana · بلد = país</p>`},
+{i:'↔️',t:'0.8 Opuestos y cantidades',b:`<div class="grid g2" style="gap:6px"><span class="mini">más ↔ menos</span><span class="mini">grande ↔ pequeño/a</span><span class="mini">alto/a ↔ bajo/a</span><span class="mini">mucho/a ↔ poco/a</span><span class="mini">bueno/a ↔ malo/a</span><span class="mini">rápido/a ↔ lento/a</span><span class="mini">joven ↔ mayor</span><span class="mini">caro/a ↔ barato/a</span><span class="mini">nuevo/a ↔ viejo/a</span><span class="mini">fácil ↔ difícil</span></div>`},
+{i:'❓',t:'0.9 Interrogativos',b:`<table class="mini"><tr><th>Forma</th><th>Uso</th><th>Ejemplo</th></tr><tr><td>¿Cuánto? / ¿Cuánta?</td><td>cantidad no contable</td><td>¿Cuánto cuesta? ¿Cuánta agua bebes?</td></tr><tr><td>¿Cuántos? / ¿Cuántas?</td><td>cosas contables</td><td>¿Cuántos hermanos tienes?</td></tr><tr><td>¿Cuándo?</td><td>tiempo y fecha</td><td>¿Cuándo es el examen?</td></tr><tr><td>¿Cómo?</td><td>manera, nombre</td><td>¿Cómo te llamas?</td></tr><tr><td>¿Qué? ¿Quién? ¿Dónde?</td><td>cosa, persona, lugar</td><td>¿Qué quieres? ¿Quién es?</td></tr></table>`},
+{i:'🔢',t:'0.10 Números 0–20 · 30 · 100',b:`<p class="mini">0 cero · 1 uno · 2 dos · 3 tres · 4 cuatro · 5 cinco · 6 seis · 7 siete · 8 ocho · 9 nueve · 10 diez · 11 once · 12 doce · 13 trece · 14 catorce · 15 quince · 16 dieciséis · 17 diecisiete · 18 dieciocho · 19 diecinueve · 20 veinte · 30 treinta · 40 cuarenta · 100 cien</p>`},
+{i:'🤝',t:'0.11 Saludos y registro: tú / usted',b:`<p class="mini"><b>Informal (tú):</b> ¡Hola! ¿Qué tal? ¿Cómo te llamas? Adiós / Hasta luego.</p><p class="mini"><b>Formal (usted):</b> Buenos días, señor/señora. ¿Cómo se llama usted? Disculpe. Por favor. Gracias.</p><p class="mini"><b>Al conocer a alguien:</b> Mucho gusto / Encantado, encantada / Igualmente.</p><p class="hint">FR: <i>vous</i> cubre las dos situaciones. En español hay que <b>elegir</b>: tú (cercanía) o usted (distancia y respeto).</p>`}
+];
+
+const ROUTE=[
+{k:'d1',d:'Día 1',m:'20 min',t:'Sección 🔊 Sonidos (1.2 → 1.7)',r:'Dirige el Miembro A',j:'sonidos'},
+{k:'d2',d:'Día 2',m:'25 min',t:'Secciones 🪪 Identidad y ⚙️ Verbos',r:'Dirige el Miembro B',j:'identidad'},
+{k:'d3',d:'Día 3',m:'20 min',t:'Secciones ↔️ Opuestos, ❓ Preguntas y ✒️ Ortografía',r:'Dirige el Miembro C',j:'opuestos'},
+{k:'d4',d:'Día 4',m:'30 min',t:'Sección 🎲 Juegos (dominó + entrevista) y 🌳 Proyecto',r:'Dirigen los tres',j:'juegos'},
+{k:'d5',d:'Antes de la Clase 2',m:'5 min',t:'Sección ✅ Autoevaluación + ensayo oral grabado',r:'Dirigen los tres',j:'autoeval'},
+{k:'r1',d:'Repaso Día +1',m:'5 min',t:'Releer en voz alta las 6 frases de 2.6 y el guion 8.3',r:'Individual',j:'identidad'},
+{k:'r3',d:'Repaso Día +3',m:'5 min',t:'Deletrear 5 palabras al azar + 1 partida corta de dominó',r:'En pareja',j:'juegos'},
+{k:'r7',d:'Repaso Día +7',m:'5 min',t:'Ensayo grabado completo del proyecto',r:'Los tres',j:'proyecto'}
+];
+
+const CANDO=['Saludo y me despido en registro formal e informal','Digo mi nombre, mi origen, mi nacionalidad y mi profesión','Conjugo ser y llamarse en presente','Conjugo verbos -ar, -er, -ir y querer','Deletreo mi nombre, mi apellido y mi correo','Distingo /p/ de /b/ al oír y al hablar','Distingo /e/ de /i/ y /o/ de /u/','Pronuncio los diptongos ie / ue','Escribo bien ca·co·cu / ce·ci / que·qui / k / z / s','Pregunto con ¿…? y pongo las tildes','Uso ¿Cuánto/a/os/as? y ¿Cuándo?','Presento a otra persona con el árbol genealógico','Uso mayúsculas solo donde toca','Coloco bien la sílaba fuerte de una palabra'];
+const CRIT=['Usa siempre el verbo <i>ser</i>','Profesión sin artículo','Pronuncia /p/ y /b/ distintos','Pronuncia /e/-/i/ y /o/-/u/ distintos','Deletrea con los nombres de las letras','Usa bien ¿Cuánto/a/os/as? y ¿Cuándo?','Habla sin leer, mirando al público'];
+const DICT=['Me llamo Karim y soy de Casablanca.','Mi madre es médica y mi padre es ingeniero.','En mi familia somos tres personas.','¿Cuántos años tiene tu hermano?','El cumpleaños de Sara es el diez de marzo.','Yo quiero un café con leche, por favor.','Mi casa es grande y luminosa.','¿Cuánto cuesta el libro de español?','Mi hermana es francesa y yo soy marroquí.','Buenos días, señor: ¿cómo se llama usted?'];
+const ENTREV=['¿Cómo te llamas?','¿Cómo se llama usted?','¿De dónde eres?','¿Cuál es tu nacionalidad?','¿Cuál es tu profesión?','¿Cómo se deletrea tu apellido?','¿Cuántas personas hay en tu familia?','¿Cuántos hermanos tienes?','¿Cuándo es tu cumpleaños?','¿Cuánto cuesta tu teléfono?','¿Qué quieres beber?','¿Cómo es tu casa: grande o pequeña?'];
+const DETECT=[
+{w:'Yo profesor de francés.',c:'Yo <b>soy</b> profesor de francés.',t:'S'},
+{w:'Ella es una abogada muy buena.',c:'Ella es abogada muy buena.',t:'A'},
+{w:'Mi badre trabaja en un hosbital.',c:'Mi <b>padre</b> trabaja en un <b>hospital</b>.',t:'F'},
+{w:'Como te llamas?',c:'<b>¿</b>Cómo te llamas<b>?</b>',t:'P'},
+{w:'Mi Hermano es Alto.',c:'Mi <b>hermano</b> es <b>alto</b>.',t:'P'},
+{w:'Nosotros marroquíes.',c:'Nosotros <b>somos</b> marroquíes.',t:'S'},
+{w:'Yo quero aprender esbanol.',c:'Yo <b>quiero</b> aprender <b>español</b>.',t:'F'},
+{w:'Soy alto y moreno y simpático y trabajador.',c:'Soy alto<b>,</b> moreno<b>,</b> simpático <b>y</b> trabajador.',t:'P'},
+{w:'¿Cuanto cuesta el cafe?',c:'¿<b>Cuánto</b> cuesta el <b>café</b>?',t:'P'},
+{w:'Mi madre es medico en el hosbital central.',c:'Mi madre es <b>médica</b> en el <b>hospital</b> central.',t:'F/A'},
+{w:'El es de Fransia.',c:'<b>Él</b> es de <b>Francia</b>.',t:'P/F'},
+{w:'¿Cuantos personas hay en tu familia?',c:'¿<b>Cuántas</b> personas hay en tu familia?',t:'G'}];
+const SPELLW=['casa','cine','kilo','queso','médico','francés','española','hermano','cumpleaños','años','zapato','Zaragoza','correo','izquierda','cero','seis','ciudad','feliz','quiero','México'];
+
+/* ══════════════════════════════════════════════════════════════
+   3. RENDER: SECCIONES ESTÁTICAS
+   ══════════════════════════════════════════════════════════════ */
+function card(title,cons,body,tag){
+  return `<div class="card"><div class="card-head"><div><h3>${title}</h3>${tag?`<span class="tag">${tag}</span>`:''}</div></div>${cons?`<p class="cons">${cons}</p>`:''}${body}</div>`;
+}
+
+function renderRuta(){
+ $('#tab-ruta').innerHTML=`
+ <h2 class="sec-title">📅 Ruta de repaso: 5 días + 3 repasos · 115 minutos</h2>
+ <p class="sec-desc">Trabajad juntos en la mesa, con el cuaderno abierto y un móvil para grabaros. Marcad cada casilla al terminar.</p>
+ <div class="card"><h3 style="margin-bottom:12px">Plan de trabajo</h3>${
+   ROUTE.map(r=>`<div class="cando-row route-row">
+     <label class="route-check"><input type="checkbox" class="chk" data-route="${r.k}" ${S.route[r.k]?'checked':''} aria-label="Marcar ${r.d} como completado"></label>
+     <div style="flex:1">
+       <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:3px">
+         <b style="font-size:.95rem">${r.d}</b>
+         <span class="tag">⏱️ ${r.m}</span>
+         <span class="tag p">👤 ${r.r}</span>
+       </div>
+       <button type="button" class="route-link" data-jump-tab="${r.j}">${r.t} <span aria-hidden="true">→</span></button>
+     </div></div>`).join('')}
+ </div>
+ <div class="grid g2">
+   ${card('👥 Roles familiares','Rotad el rol cada día para que todos practiquen todo.',`
+     <div class="role"><i style="background:#2563eb">A</i><div><b>Cronometrador</b><br><span class="mini" style="color:var(--muted)">Controla los minutos y avisa a los 5' del final.</span></div></div>
+     <div class="role"><i style="background:#16a34a">B</i><div><b>Portavoz</b><br><span class="mini" style="color:var(--muted)">Lee las consignas en voz alta y dirige el juego.</span></div></div>
+     <div class="role"><i style="background:#7c3aed">C</i><div><b>Corrector</b><br><span class="mini" style="color:var(--muted)">Comprueba con la Clave y anota los fallos en el Muro.</span></div></div>
+     <div class="role"><i style="background:#d97706">T</i><div><b>Técnico de sonido</b><br><span class="mini" style="color:var(--muted)">Graba, reproduce y busca la pronunciación con audio.</span></div></div>`)}
+   ${card('🔊 Protocolo de audio autónomo','Sin profesor: usad el móvil como laboratorio de fonética.',`
+     <ol class="steps">
+       <li><b>Escuchar:</b> teclead la palabra en un traductor o diccionario con audio y elegid la voz de vuestra variedad (<b>${S.variety==='peninsular'?'España':'América Latina'}</b>).</li>
+       <li><b>Mirar:</b> frente al espejo. Para <b>/p/</b> sale un soplo de aire (mano delante); para <b>/b/</b> no sale aire y vibra la garganta (mano en el cuello).</li>
+       <li><b>Grabar:</b> grabaos diciendo la palabra 3 veces.</li>
+       <li><b>Comparar:</b> escuchad vuestra grabación y el modelo, uno detrás del otro. Valorad: igual / casi / diferente.</li>
+     </ol>`)}
+ </div>
+ <div class="card box amber" style="border-radius:var(--r)">
+   <h3 style="font-size:1rem;color:#92400e;margin-bottom:6px">⚠️ Nota de variedad fonética</h3>
+   <p class="mini" style="color:#92400e">En España, <b>ce / ci / z</b> suenan como la «th» inglesa de <i>thin</i> (/θ/): <i>cero, cine, Zaragoza</i>. En América Latina suenan /s/: <i>cero, cine</i>. Las dos son correctas y la escritura no cambia. Vuestra selección actual: <b>${S.variety==='peninsular'?'España (/θ/)':'América Latina (/s/)'}</b>.</p>
+ </div>
+ <div class="card">
+   <h3 style="margin-bottom:8px">🎯 Qué tiene que quedar perfecto al terminar</h3>
+   <div class="grid g2">
+     <div class="box green mini">✅ Verbo <b>ser</b> en todas las frases de identidad (<i>Soy profesor</i>, nunca <i>Yo profesor</i>).</div>
+     <div class="box green mini">✅ <b>Cero artículos</b> con profesiones (<i>Soy médico</i>, nunca <i>Soy un médico</i>).</div>
+     <div class="box green mini">✅ Deletreo fluido con los nombres de las letras y reglas <b>ca/co/cu</b> vs <b>ce/ci</b>.</div>
+     <div class="box green mini">✅ <b>/p/ ≠ /b/</b>, <b>/e/ ≠ /i/</b>, <b>/o/ ≠ /u/</b> y diptongos <b>ie/ue</b> intactos.</div>
+     <div class="box green mini">✅ Concordancia de <b>¿cuánto/a/os/as?</b> y uso temporal de <b>¿cuándo?</b>.</div>
+     <div class="box green mini">✅ Proyecto ensayado y grabado: 3 tarjetas + árbol + guion de 3 minutos.</div>
+   </div>
+ </div>`;
+}
+
+function renderTools(){
+ $('#tab-herramientas').innerHTML=`
+ <h2 class="sec-title">🧰 Caja de Herramientas</h2>
+ <p class="sec-desc">Consulta rápida antes de hacer los ejercicios. Es el «libro de texto» del dossier: todo lo visto en la Clase 1 en un solo lugar.</p>
+ <div class="grid g2">${TOOLS.map((t,i)=>`
+   <div class="acc" id="acc${i}">
+     <button class="acc-head" type="button" data-acc="${i}" aria-expanded="false" aria-controls="accbody${i}"><span>${t.i}</span><span>${t.t}</span><span class="arw">▼</span></button>
+     <div class="acc-body" id="accbody${i}">${t.b}</div>
+   </div>`).join('')}
+ </div>`;
+}
+
+/* ---------- RENDER GENÉRICO DE TAREAS ---------- */
+function isDone(id){const c=S.checked[id]||{};const n=TASKS[id].items.length;let k=0;for(let i=0;i<n;i++)if(c[i]!==undefined)k++;return k===n}
+function answeredCount(id){const a=S.answers[id]||{};return TASKS[id].items.filter((_,i)=>{const v=a[i];return v!==undefined&&v!==null&&String(v).trim()!==''}).length}
+
+function renderTask(id){
+ const T=TASKS[id];const A=S.answers[id]||{};const C=S.checked[id]||{};
+ const done=isDone(id);
+ let ok=0;Object.values(C).forEach(v=>{if(v===true)ok++});
+ let h=`<div class="card" id="task_${id}"><div class="card-head"><div><h3>${T.t}</h3>${done?`<span class="tag g">Corregido · ${ok}/${T.items.length}</span>`:`<span class="tag">${answeredCount(id)}/${T.items.length} respondidas</span>`}</div></div><p class="cons">${T.c}</p>`;
+
+ if(T.type==='choice'){
+   h+=`<div>`;T.items.forEach((it,i)=>{
+     const st=C[i];const cls=st===true?'ok':st===false?'ko':'pending';
+     h+=`<div class="item ${st!==undefined?cls:''}"><p class="q">${i+1}. ${it.q}</p><div class="opts">`;
+     it.o.forEach((op,oi)=>{
+       h+=`<button type="button" class="opt ${A[i]===oi?'sel':''}" data-opt="${id}|${i}|${oi}" aria-pressed="${A[i]===oi}" ${st!==undefined?'disabled':''}>${op}</button>`;});
+     h+=`</div>`;
+     if(S.teacher&&st===undefined)h+=`<div class="fb ok">👁️ Clave: <b>${it.o[it.a]}</b> — ${it.r||''}</div>`;
+     if(st===true)h+=`<div class="fb ok">✔ ¡Correcto! ${it.r||''}</div>`;
+     if(st===false)h+=`<div class="fb ko">✘ La respuesta correcta es <b>${it.o[it.a]}</b>. ${it.r||''}</div>`;
+     h+=`</div>`;});
+   h+=`</div>`;
+ }
+ else if(T.type==='fill'){
+   h+=`<div class="${T.grid?'grid g'+T.grid:''}">`;T.items.forEach((it,i)=>{
+     const st=C[i];const cls=st===true?'ok':st===false?'ko':'pending';
+     const label=String(it.q).replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
+     h+=`<div class="item ${st!==undefined?cls:''}"><p class="q">${T.grid?'':(i+1)+'. '}${it.q}</p>
+     <input type="text" id="answer_${id}_${i}" data-fill="${id}|${i}" value="${(A[i]||'').replace(/"/g,'&quot;')}" placeholder="…" aria-label="${label.replace(/"/g,"'")}" ${st!==undefined?'readonly':''}>`;
+     if(S.teacher&&st===undefined)h+=`<div class="fb ok">👁️ Clave: <b>${it.a}</b></div>`;
+     if(st===false)h+=`<div class="fb ko">✘ Respuesta correcta: <b>${it.a}</b>${it.note?' — '+it.note:''}</div>`;
+     if(st===true)h+=`<div class="fb ok">✔ ¡Correcto!${it.note?' '+it.note:''}</div>`;
+     h+=`</div>`;});
+   h+=`</div>`;
+ }
+ else if(T.type==='match'){
+   h+=`<div class="grid g3">`;T.items.forEach((it,i)=>{
+     const st=C[i];const cls=st===true?'ok':st===false?'ko':'pending';
+     h+=`<div class="item ${st!==undefined?cls:''}" style="text-align:center"><p class="q" style="margin-bottom:6px"><b>${it.w}</b></p>
+     <input type="text" id="answer_${id}_${i}" data-fill="${id}|${i}" value="${(A[i]||'').replace(/"/g,'&quot;')}" placeholder="opuesto…" aria-label="Antónimo de ${it.w}" style="text-align:center" ${st!==undefined?'readonly':''}>`;
+     if(st===false)h+=`<div class="fb ko">✘ <b>${it.a}</b></div>`;
+     if(st===true)h+=`<div class="fb ok">✔</div>`;
+     h+=`</div>`;});
+   h+=`</div>`;
+ }
+ else if(T.type==='spell'){
+   h+=`<div class="grid g2">`;T.items.forEach((it,i)=>{
+     const st=C[i];const cls=st===true?'ok':st===false?'ko':'pending';
+     h+=`<div class="item ${st!==undefined?cls:''}"><p class="q"><b>${it.w}</b></p>
+     <input type="text" id="answer_${id}_${i}" data-fill="${id}|${i}" value="${(A[i]||'').replace(/"/g,'&'+'quot;')}" placeholder="eme-a-ene-o" aria-label="Deletrea ${it.w}" ${st!==undefined?'readonly':''}>`;
+     if(S.teacher&&st===undefined)h+=`<div class="fb ok">👁️ Clave: <b>${it.a.join('-')}</b></div>`;
+     if(st===false)h+=`<div class="fb ko">✘ Revisa el deletreo: <b>${it.a.join('-')}</b></div>`;
+     if(st===true)h+=`<div class="fb ok">✔ ¡Deletreo correcto!</div>`;
+     h+=`</div>`;});
+   h+=`</div>`;
+ }
+ else if(T.type==='err'){
+   h+=`<div>`;T.items.forEach((it,i)=>{
+     const st=C[i];
+     h+=`<div class="item ${st!==undefined?'ok':'pending'}">
+       <p class="q"><span style="color:var(--bad);font-weight:800">✘</span> <i>${it.w}</i></p>
+       <input type="text" id="answer_${id}_${i}" data-fill="${id}|${i}" value="${(A[i]||'').replace(/"/g,'&quot;')}" placeholder="Escribe la frase corregida…" aria-label="Corrige la frase: ${it.w.replace(/"/g,"'")}" ${st!==undefined?'readonly':''}>`;
+     if(S.teacher&&st===undefined)h+=`<div class="fb ok">👁️ Clave: <b>${it.a}</b></div>`;
+     if(st!==undefined){
+       const good=st===true;
+       h+=`<div class="fb ${good?'ok':'ko'}">${good?'✔ ¡Muy bien!':'✘ Compara con la solución:'} <b>${it.a}</b><br><span style="opacity:.85">${it.r}</span></div>`;}
+     h+=`</div>`;});
+   h+=`</div>`;
+ }
+ else if(T.type==='syll'){
+   h+=`<div class="grid g4">`;T.items.forEach((it,i)=>{
+     const st=C[i];
+     h+=`<div class="item ${st===true?'ok':st===false?'ko':'pending'}"><p class="syl-word">${it.w}</p><div class="syls">`;
+     it.s.forEach((sy,si)=>{
+       let cls='syl';
+       if(A[i]===si)cls+=' sel';
+       if(st===true&&si===it.a)cls='syl right';
+       if(st===false){if(si===it.a)cls='syl right';else if(A[i]===si)cls='syl wrong';}
+       h+=`<button type="button" class="${cls}" data-syl="${id}|${i}|${si}" aria-pressed="${A[i]===si}" ${st!==undefined?'disabled':''}>${sy}</button>`;});
+     h+=`</div>`;
+     if(S.teacher&&st===undefined)h+=`<div class="fb ok">👁️ Clave: <b>${it.s[it.a]}</b></div>`;
+     if(st===false)h+=`<div class="fb ko">✘ La sílaba fuerte es <b>${it.s[it.a]}</b>.</div>`;
+     h+=`</div>`;});
+   h+=`</div>`;
+ }
+ else if(T.type==='select'){
+   h+=`<div class="grid g2">`;T.items.forEach((it,i)=>{
+     const st=C[i];const sel=A[i]===true;
+     let cls='item '+((st===true)?'ok':(st===false)?'ko':'pending');
+     h+=`<button type="button" class="${cls} select-choice" style="display:flex;gap:10px;align-items:center;cursor:pointer;text-align:left" data-sel="${id}|${i}" aria-pressed="${sel}">
+       <span style="font-size:1.05rem" aria-hidden="true">${sel?'☑':'☐'}</span><span class="mini" style="flex:1;${sel?'text-decoration:line-through;color:var(--muted)':''}">${it.t}</span></button>`;});
+   h+=`</div>`;
+   if(Object.keys(C).length){
+     h+=`<div class="box green mini" style="margin-top:12px"><b>Solución:</b> sobra el artículo en 1, 2, 3, 4, 5, 6, 8 y 9 (profesiones). Las frases 7 (<i>una francesa</i>) y 10 (<i>unas personas</i>) son correctas: no son profesiones.</div>`;}
+ }
+
+ const allAns=T.items.every((_,i)=>{const v=A[i];return T.type==='select'?v!==undefined:(v!==undefined&&String(v).trim()!=='')});
+ h+=`<div class="ex-actions">
+   <button type="button" class="btn btn-primary btn-sm" data-check="${id}" ${(!allAns||done)?'disabled':''}>Comprobar respuestas</button>
+   ${done?`<button type="button" class="btn btn-ghost btn-sm" data-retry="${id}">↺ Reintentar</button>`:''}
+   <span class="score-chip ${done?'ok':''}">${done?ok+'/'+T.items.length+' aciertos':answeredCount(id)+'/'+T.items.length+' completadas'}</span>
+ </div></div>`;
+ return h;
+}
+
+/* ---------- SECCIONES ---------- */
+function renderSonidos(){
+ $('#tab-sonidos').innerHTML=`
+ <h2 class="sec-title">🔊 Laboratorio de sonidos y ortografía</h2>
+ <p class="sec-desc">Focos del perfil arabófono: /p/~/b/, /e/~/i/, /o/~/u/, diptongos y acento léxico. Foco francófono: todas las sílabas se pronuncian y la fuerza no va siempre al final.</p>
+ <div class="grid g2">
+   <div class="card box blue"><h3 style="font-size:.98rem">👂 1.1 Pares mínimos /e/~/i/ y /o/~/u/</h3>
+     <table class="mini" style="margin-top:8px"><tr><th>/e/</th><th>/i/</th><th>/o/</th><th>/u/</th></tr>
+     <tr><td>temo</td><td>timo</td><td>rosa</td><td>rusa</td></tr>
+     <tr><td>peso</td><td>piso</td><td>poro</td><td>puro</td></tr>
+     <tr><td>lela</td><td>lila</td><td>copo</td><td>cupo</td></tr>
+     <tr><td>tela</td><td>tila</td><td>coro</td><td>curo</td></tr>
+     <tr><td>deje</td><td>dije</td><td>bola</td><td>bula</td></tr>
+     <tr><td>peco</td><td>pico</td><td>once</td><td>—</td></tr></table>
+     <p class="hint"><b>Dinámica:</b> un familiar dice una palabra y los demás escriben cuál han oído. Haced 2 rondas y anotad los aciertos. Después, dictado inverso: cada uno escribe su propia lista de 6 palabras y la intercambia.</p></div>
+   <div class="card box purple"><h3 style="font-size:.98rem">🎙️ 1.5 Trabalenguas (3 rondas, grabados)</h3>
+     <div class="box" style="margin-top:8px;background:#fff"><b>/p/ ~ /b/:</b> Pablo pone pan en la bolsa de Blanca; Blanca bebe el batido de Pablo.</div>
+     <div class="box" style="margin-top:6px;background:#fff"><b>/θ/~/s/ ~ /k/:</b> César cena cecina cerca del cine; seis cebollas y un café con crema.</div>
+     <div class="box" style="margin-top:6px;background:#fff"><b>/r/ ~ /rr/:</b> Erre con erre cigarro, erre con erre barril; rápido ruedan los carros por el ferrocarril.</div>
+     <div class="box" style="margin-top:6px;background:#fff"><b>Diptongos:</b> Cuando yo cuento el cuento de mi tía, la tía se despierta y calienta el té.</div>
+     <p class="hint">Ritmo: en español se pronuncian <b>todas</b> las sílabas y la fuerza no cae siempre al final (a diferencia del francés).</p></div>
+ </div>
+ ${renderTask('s1_2')}${renderTask('s1_3')}${renderTask('s1_4')}${renderTask('s1_6')}${renderTask('s1_7')}
+ <div class="card box amber"><h3 style="font-size:1rem;color:#92400e">🧪 Si te cuesta…</h3><p class="mini" style="color:#92400e">Trabaja solo 1.2 (/p/~/b/), 1.6 (grafías) y 1.7 (deletreo). El resto puede esperar a la semana 2: mejor poco y bien hecho cada día que mucho y a medias.</p></div>`;
+}
+
+function renderIdentidad(){
+ $('#tab-identidad').innerHTML=`
+ <h2 class="sec-title">🪪 Identidad: ser, llamarse y profesiones</h2>
+ <p class="sec-desc">Las tres reglas de oro: <b>siempre</b> verbo <i>ser</i> · profesión <b>sin</b> artículo · el pronombre sujeto normalmente se omite.</p>
+ ${renderTask('i2_1')}${renderTask('i2_2')}${renderTask('i2_3')}${renderTask('i2_4')}${renderTask('i2_5')}
+ <div class="card"><h3>2.6 Producción: mi identidad en 6 frases</h3>
+ <p class="cons">Modelo: <i>Me llamo Ana Ruiz. Soy de Francia, de Lyon. Soy francesa. Soy médica. Tengo cuarenta y dos años. Quiero aprender español para trabajar en Madrid.</i></p>
+ <textarea data-text="prod26" aria-label="Producción: mi identidad en seis frases" placeholder="1. Me llamo…&#10;2. Soy de…&#10;3. Soy… (nacionalidad)&#10;4. Soy… (profesión sin artículo)&#10;5. Tengo … años.&#10;6. Quiero…">${S.texts.prod26||''}</textarea>
+ <p class="hint">💡 Grábate leyéndolas con el móvil y escúchate al día siguiente. Revisa: ¿está el verbo <i>ser</i> en todas? ¿hay algún artículo delante de la profesión?</p></div>`;
+}
+
+function renderVerbos(){
+ $('#tab-verbos').innerHTML=`
+ <h2 class="sec-title">⚙️ El presente: regulares e irregulares</h2>
+ <p class="sec-desc">-AR / -ER / -IR y el verbo <b>querer</b> (e → ie). Consulta la tabla en 🧰 Herramientas 0.5.</p>
+ ${renderTask('v3_1')}${renderTask('v3_2')}${renderTask('v3_3')}
+ <div class="card"><h3>🎲 3.4 Juego familiar: los dados del verbo</h3>
+ <p class="cons">Un miembro dice un <b>sujete</b>, otro dice un <b>verbo</b> y el tercero forma la frase en menos de 5 segundos. 1 punto por acierto; gana quien llegue a 10.</p>
+ <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">${['yo','tú','él / ella','usted','nosotros','vosotros','ellos','ustedes','mi madre','mis hijos','la profesora'].map(s=>`<span class="tag">${s}</span>`).join('')}</div>
+ <div style="display:flex;flex-wrap:wrap;gap:6px">${['hablar','comer','vivir','querer','ser','llamarse','estudiar','beber','leer','escribir','trabajar','comprender'].map(v=>`<span class="tag g">${v}</span>`).join('')}</div>
+ <p class="hint">Variante difícil: después de la frase, el siguiente debe hacer una pregunta con <b>¿cuánto/a/os/as?</b> o <b>¿cuándo?</b> usando ese verbo.</p></div>`;
+}
+
+function renderOpuestos(){
+ $('#tab-opuestos').innerHTML=`
+ <h2 class="sec-title">↔️ Opuestos, cantidades y concordancia</h2>
+ <p class="sec-desc">Antónimos, cuantificadores y la concordancia de género y número del adjetivo.</p>
+ ${renderTask('o4_1')}${renderTask('o4_2')}${renderTask('o4_3')}
+ <div class="card"><h3>4.4 Producción: frases con contraste</h3>
+ <p class="cons">Escribe 4 frases comparando dos cosas de tu casa o de tu familia con <i>más… que</i>, <i>menos… que</i>, <i>muy</i> o <i>poco</i>.</p>
+ <p class="mini" style="color:var(--muted)">Modelo: <i>En verano hay más sol que en invierno. Mi casa es grande, pero mi habitación es pequeña.</i></p>
+ <textarea data-text="prod44" aria-label="Producción: cuatro frases con contraste" placeholder="1. …&#10;2. …&#10;3. …&#10;4. …">${S.texts.prod44||''}</textarea></div>`;
+}
+
+function renderPreguntas(){
+ $('#tab-preguntas').innerHTML=`
+ <h2 class="sec-title">❓ Preguntar bien</h2>
+ <p class="sec-desc">Concordancia de <b>¿cuánto/a/os/as?</b>, uso temporal de <b>¿cuándo?</b> y ortografía obligatoria de los dos signos.</p>
+ ${renderTask('q5_1')}${renderTask('q5_2')}${renderTask('q5_3')}
+ <div class="card"><h3>5.4 Rueda de preguntas en familia</h3>
+ <p class="cons">Cada miembro formula <b>2 preguntas</b> con ¿Cuánto/a/os/as? y <b>1</b> con ¿Cuándo? a otro miembro, que responde con una frase completa.</p>
+ <div class="grid g3">${ENTREV.slice(6,12).map(q=>`<div class="box blue mini" style="text-align:center;font-weight:600;color:#1e40af">${q}</div>`).join('')}</div>
+ <p class="hint">El Corrector anota: ¿falta el verbo <i>ser</i>? ¿hay artículo con profesión? ¿está el signo <b>¿</b>? ¿la concordancia de cuánto/a/os/as es correcta?</p></div>`;
+}
+
+function renderOrtografia(){
+ $('#tab-ortografia').innerHTML=`
+ <h2 class="sec-title">✒️ Ortografía y puntuación</h2>
+ <p class="sec-desc">Lo que el francés y el árabe no comparten con el español: los dos signos, las tildes, las mayúsculas, la h muda y la b = v.</p>
+ ${renderTask('orth6_1')}${renderTask('orth6_2')}${renderTask('orth6_3')}
+ <div class="card"><h3>6.4 Dictado en cadena (10 frases)</h3>
+ <p class="cons">El Técnico de Sonido lee cada frase <b>una sola vez</b>. Los otros dos la escriben a mano. Después se compara con el modelo (haz clic para revelarlo). 1 punto por frase sin errores.</p>
+ ${DICT.map((f,i)=>`<details><summary>Frase ${i+1} · pulsa para ver el modelo</summary><div class="body">${f}</div></details>`).join('')}
+ <p class="hint">Puntuación del equipo: ____ / 10. Errores más frecuentes: tildes, ¿?, mayúsculas, /p/~/b/.</p></div>`;
+}
+
+function renderJuegos(){
+ $('#tab-juegos').innerHTML=`
+ <h2 class="sec-title">🎲 Juegos en familia</h2>
+ <p class="sec-desc">30 minutos de práctica oral. Aquí se consolida lo que los ejercicios escritos solo preparan.</p>
+ <div class="card"><div class="card-head"><div><h3>🃏 7.1 Dominó encadenado de la identidad (30 fichas)</h3><span class="tag p">Autoverificable</span></div><button type="button" class="btn btn-ghost btn-sm" id="domReset">↺ Reiniciar</button></div>
+ <p class="cons">Haz clic en las fichas en orden, empezando por la ★ dorada. Cada ficha <b>responde</b> a la pregunta de la anterior. Si la cadena se cierra (la ficha 30 pregunta «¿Cómo te llamas?» y la ficha 1 responde «Me llamo Ana Ruiz»), el dominó está perfecto.</p>
+ <div class="box red mini" style="margin-bottom:12px"><b>Reglas lingüísticas obligatorias:</b> leer en voz alta · usar siempre el verbo <i>ser</i> · no decir artículo con la profesión · deletrear con los nombres de las letras. Quien incumple una regla pierde el turno.</div>
+ <div id="domWrap"></div></div>
+ <div class="card"><h3>🎤 7.2 Entrevista cruzada (3 minutos por pareja)</h3>
+ <p class="cons">Un miembro entrevista a otro con estas 12 tarjetas; el tercero hace de <b>notario</b> y anota los errores. Después se intercambian los papeles.</p>
+ <div class="grid g3">${ENTREV.map((q,i)=>`<div class="box blue" style="text-align:center"><b style="color:#1e40af">${i+1}.</b> <span class="mini" style="color:#1e3a8a">${q}</span></div>`).join('')}</div>
+ <div class="box amber mini" style="margin-top:12px"><b>Ficha del notario:</b> ✘ sin verbo <i>ser</i> ____ · ✘ artículo + profesión ____ · ✘ /p/ por /b/ ____ · ✘ sin ¿ ____ · ✘ diptongo reducido ____</div></div>
+ <div class="card"><h3>🕵️ 7.3 Detectives de errores</h3>
+ <p class="cons">Haz clic en cada tarjeta para revelar la corrección. Tipos: <b>S</b> falta <i>ser</i> · <b>A</b> artículo con profesión · <b>F</b> fonética/ortografía · <b>P</b> puntuación o mayúsculas · <b>G</b> concordancia.</p>
+ <div class="grid g3">${DETECT.map((d,i)=>`<button type="button" class="flip" data-flip="${i}" aria-pressed="false" aria-label="Revelar la corrección de: ${d.w}"><span class="flip-in"><span class="flip-f"><span><span class="tag" style="background:#fecaca;color:#991b1b">${d.t}</span> ${d.w}</span></span><span class="flip-b"><span>${d.c}</span></span></span></button>`).join('')}</div></div>
+ <div class="card"><div class="card-head"><div><h3>🔤 7.4 Carrera del deletreo (20 palabras)</h3><span class="tag g" id="spellChip">0 / 20</span></div></div>
+ <p class="cons">Por turnos: un miembro dice la palabra y otro la deletrea en menos de 10 segundos. Marca con un clic las palabras superadas.</p>
+ <div style="display:flex;flex-wrap:wrap;gap:7px">${SPELLW.map((w,i)=>`<button type="button" class="opt ${S.spell.includes(i)?'sel':''}" data-spell="${i}" aria-pressed="${S.spell.includes(i)}">${w}</button>`).join('')}</div></div>`;
+ renderDom();
+}
+
+function renderDom(){
+ const w=$('#domWrap');if(!w)return;
+ const placed=S.domino, n=placed.length, pct=Math.round(n/30*100);
+ let h=`<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div class="bar"><i style="width:${pct}%"></i></div><b style="font-size:.85rem;color:var(--brand)">${n}/30</b></div>`;
+ if(n){
+   h+=`<p class="mini" style="font-weight:700;color:var(--muted);margin-bottom:6px">CADENA CONSTRUIDA</p><div class="chain">`;
+   placed.forEach(id=>{const t=DOM.find(d=>d.id===id);h+=`<div class="tile placed ${t.start?'start':''}"><div class="ans">▲ ${t.top}</div><div class="que">▼ ${t.bot}</div></div>`;});
+   h+=`</div>`;
+ }
+ if(n===30){
+   h+=`<div class="box green" style="text-align:center;padding:18px"><b style="font-size:1.05rem;color:#166534">🎉 ¡Cadena completada y cerrada!</b><p class="mini" style="color:#166534;margin-top:4px">La pregunta de la ficha 30 conecta con la respuesta de la ficha 1: el dominó es correcto. Ahora jugad la <b>ronda oral</b>: sin mirar las fichas, un miembro lee la pregunta y otro responde de memoria.</p></div>`;
+ }else{
+   const next=n+1;
+   h+=`<p class="mini" style="font-weight:700;color:var(--muted);margin-bottom:6px">FICHAS DISPONIBLES ${n===0?'· empieza por la ★ dorada':'· la siguiente es la '+next}</p><div class="pool">`;
+   DOM.filter(t=>!placed.includes(t.id)).forEach(t=>{
+     const clickable=(t.id===next)||(n===0&&t.start);
+     h+=`<button type="button" class="tile ${t.start?'start':''} ${clickable?'':'locked'}" data-dom="${t.id}" ${clickable?'':'disabled'} aria-label="Ficha ${t.id}. Respuesta: ${t.top}. Pregunta: ${t.bot}"><span class="ans">▲ ${t.top}</span><span class="que">▼ ${t.bot}</span></button>`;});
+   h+=`</div><p class="hint">Las fichas atenuadas todavía no encajan: la respuesta de arriba debe contestar a la pregunta de la última ficha colocada.</p>`;
+ }
+ w.innerHTML=h;
+}
+
+function renderProyecto(){
+ const M=S.members.map((m,i)=>m||('Miembro '+(i+1)));
+ $('#tab-proyecto').innerHTML=`
+ <h2 class="sec-title">🌳 Proyecto integrador · entregable de la Clase 2</h2>
+ <p class="sec-desc">Tarjeta de identidad × 3 + mini árbol genealógico + guion de presentación oral de 3 minutos por persona.</p>
+ <div class="card"><h3>8.1 Tarjetas de identidad familiar</h3>
+ <p class="cons">Completad una tarjeta por miembro. Recordad: la profesión va <b>sin artículo</b>. El correo debe estar listo para deletrear en directo.</p>
+ <div class="grid g3 project-cards">${[0,1,2].map(i=>{const c=S.proj[i]||{};return `
+  <div class="box blue" style="padding:14px">
+    <p style="font-weight:800;color:#1e40af;text-align:center;margin-bottom:10px">👤 ${M[i]}</p>
+    ${[['nombre','Nombre completo'],['apellido','Apellido (para deletrear)'],['origen','País / ciudad de origen'],['nac','Nacionalidad (m / f)'],['prof','Profesión (¡sin artículo!)'],['edad','Edad'],['correo','Correo electrónico'],['quer','Frase con QUERER: Yo quiero…'],['adj','Dos adjetivos: ___ y ___']].map(f=>`
+      <div style="margin-bottom:7px"><label class="lbl" for="proj_${i}_${f[0]}" style="font-size:.72rem">${f[1]}</label>
+      <input type="text" id="proj_${i}_${f[0]}" data-proj="${i}|${f[0]}" value="${(c[f[0]]||'').replace(/"/g,'&quot;')}"></div>`).join('')}
+  </div>`}).join('')}</div></div>
+
+ <div class="card"><h3>8.2 Mini árbol genealógico</h3>
+ <p class="cons">Dibujadlo también en papel para traerlo a clase. Aquí podéis ensayar las frases del banco.</p>
+ <div class="tree-box">
+   <div style="display:flex;justify-content:center;gap:14px;align-items:center;flex-wrap:wrap">
+     <div class="tree-node"><input type="text" data-text="tree1n" aria-label="Nombre del primer progenitor" value="${S.texts.tree1n||''}" placeholder="Nombre" style="font-weight:700;text-align:center"><input type="text" data-text="tree1r" aria-label="Relación del primer progenitor" value="${S.texts.tree1r||''}" placeholder="Es mi ___" style="text-align:center;font-size:.78rem"></div>
+     <span class="arrow">+</span>
+     <div class="tree-node pink"><input type="text" data-text="tree2n" aria-label="Nombre del segundo progenitor" value="${S.texts.tree2n||''}" placeholder="Nombre" style="font-weight:700;text-align:center"><input type="text" data-text="tree2r" aria-label="Relación del segundo progenitor" value="${S.texts.tree2r||''}" placeholder="Es mi ___" style="text-align:center;font-size:.78rem"></div>
+   </div>
+   <div class="arrow" style="margin:12px 0">↓ ↓ ↓</div>
+   <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+     ${[1,2,3].map(n=>`<div class="tree-node green" style="min-width:118px"><input type="text" data-text="treen${n}" aria-label="Nombre de la persona ${n}" value="${S.texts['treen'+n]||''}" placeholder="Nombre" style="font-weight:700;text-align:center"><input type="text" data-text="treer${n}" aria-label="Relación de la persona ${n}" value="${S.texts['treer'+n]||''}" placeholder="Es mi ___" style="text-align:center;font-size:.78rem"><input type="text" data-text="trees${n}" aria-label="Nombre de la persona ${n}" value="${S.texts['trees'+n]||''}" placeholder="Se llama ___" style="text-align:center;font-size:.78rem"></div>`).join('')}
+   </div>
+ </div>
+ <div class="box blue mini" style="margin-top:12px"><b>Banco de frases obligatorio:</b> Este es mi padre. · Esta es mi madre. · Él es mi hermano / Ella es mi hermana. · Se llama… · Es… (profesión sin artículo). · Es de… · Es francés / francesa / marroquí. · Tiene … años. · En mi familia somos … personas.</div></div>
+
+ <div class="card"><h3>8.3 Guion de la presentación oral</h3>
+ <p class="cons">3 minutos por persona. Marcad cada fase cuando la hayáis ensayado.</p>
+ <div class="tbl-scroll"><table><tr><th>Fase</th><th style="text-align:center">Tiempo</th><th>Contenido</th><th style="text-align:center">✔</th></tr>
+ ${[['1. Saludo y registro','20’’','Buenos días / Buenas tardes. ¿Cómo están ustedes? + elección tú/usted','f1'],['2. Autopresentación','40’’','Nombre + origen + nacionalidad + profesión (sin artículo) + edad','f2'],['3. Deletreo en directo','30’’','Apellido o correo, letra a letra, con los nombres de las letras','f3'],['4. Presentación de la familia','60’’','Árbol: 3 personas con <i>es mi… / se llama… / es…</i>','f4'],['5. Cantidad y tiempo','20’’','2 frases con ¿Cuántos…? y 1 con ¿Cuándo…?','f5'],['6. Cierre','10’’','Muchas gracias. ¿Tienen alguna pregunta?','f6']].map(r=>`
+ <tr><td class="mini"><b>${r[0]}</b></td><td class="mini" style="text-align:center">${r[1]}</td><td class="mini">${r[2]}</td><td style="text-align:center"><input type="checkbox" class="chk" data-text="chk_${r[3]}" aria-label="Marcar fase ${r[0]} como ensayada" ${S.texts['chk_'+r[3]]==='1'?'checked':''} data-flag="${r[3]}"></td></tr>`).join('')}
+ </table></div>
+ <div class="box amber" style="margin-top:14px"><p class="mini" style="font-weight:700;color:#92400e;margin-bottom:6px">Guion con huecos (rellenad, leed 3 veces y grabad):</p>
+ <textarea data-text="guion" aria-label="Guion de la presentación oral con huecos" style="background:#fffdf5" placeholder="Buenos días. Me llamo ____________. Soy de ____________, de la ciudad de ____________. Soy ____________ (nacionalidad). Soy ____________ (profesión). Tengo ____________ años.
+Esta es mi familia. Este es mi ____________; se llama ____________ y es ____________. Esta es mi ____________; se llama ____________ y es ____________. En mi familia somos ____________ personas.
+Mi correo es ____________ y se deletrea ____________.
+Mi cumpleaños es el ____________ de ____________. Muchas gracias.">${S.texts.guion||''}</textarea></div></div>
+
+ <div class="card"><h3>8.4 Ensayo grabado y coevaluación familiar</h3>
+ <p class="cons">Grabad el ensayo completo con el móvil y escuchadlo juntos al día siguiente. Puntuad: 1 = a mejorar · 2 = bien · 3 = muy bien.</p>
+ <div class="tbl-scroll"><table><tr><th>Criterio</th>${[1,2,3].map(n=>`<th style="text-align:center">${n}</th>`).join('')}</tr>
+ ${CRIT.map((c,i)=>`<tr><td class="mini">${c}</td>${[1,2,3].map(n=>`<td style="text-align:center"><label class="crit-option" aria-label="${c}: puntuación ${n}"><input type="radio" class="chk" name="crit${i}" value="${n}" data-crit="${i}|${n}" ${S.texts['crit'+i]==String(n)?'checked':''}></label></td>`).join('')}</tr>`).join('')}
+ </table></div>
+ <div class="box green mini" style="margin-top:12px">Puntuación máxima: <b>21</b>. Objetivo mínimo para la Clase 2: <b>15</b>. Puntuación actual: <b id="critTotal">${critTotal()}</b>.</div></div>`;
+}
+function critTotal(){let t=0;for(let i=0;i<CRIT.length;i++){const v=S.texts['crit'+i];if(v)t+=parseInt(v)||0}return t}
+
+function renderAuto(){
+ $('#tab-autoeval').innerHTML=`
+ <h2 class="sec-title">✅ Autoevaluación y seguimiento</h2>
+ <p class="sec-desc">Semáforo de capacidades, muro de errores personales y repaso espaciado.</p>
+ <div class="card"><h3>9.1 Can-Do Checklist</h3>
+ <p class="cons">🟢 lo hago solo · 🟡 lo hago con ayuda · 🔴 todavía no. Sed honestos: esto lo leerá el profesor en la Clase 2.</p>
+ ${CANDO.map((c,i)=>{const v=S.canDo[i]||'';return `<div class="cando-row"><div class="sem">
+   ${['green','yellow','red'].map(col=>`<button type="button" data-c="${col}" data-cando="${i}|${col}" class="${v===col?'on':''}" aria-pressed="${v===col}" aria-label="${c}: ${col==='green'?'lo hago solo':col==='yellow'?'con ayuda':'todavía no'}" title="${col==='green'?'Lo hago solo':col==='yellow'?'Con ayuda':'Todavía no'}">${col==='green'?'🟢':col==='yellow'?'🟡':'🔴'}</button>`).join('')}
+ </div><span class="txt">${c}</span></div>`}).join('')}
+ <div class="box blue mini" style="margin-top:12px">Verdes: <b id="cdG">0</b> · Amarillos: <b id="cdY">0</b> · Rojos: <b id="cdR">0</b>. Los rojos y amarillos son la lista de la compra de la Clase 2: eso es lo que vais a preguntar al profesor.</div></div>
+
+ <div class="card"><div class="card-head"><div><h3>9.2 Muro de mis sonidos y errores difíciles</h3></div><button type="button" class="btn btn-ghost btn-sm" id="addErr">+ Añadir fila</button></div>
+ <p class="cons">Anotad los errores reales que han aparecido esta semana. El profesor los corregirá uno a uno en la Clase 2.</p>
+ <div class="tbl-scroll"><table><tr><th>Sonido / regla</th><th>Mi error real</th><th>La forma correcta</th><th style="width:110px">Veces practicado</th></tr>
+ ${(S.errors.length?S.errors:[{a:'/p/',b:'badre',c:'padre',d:3},{a:'diptongo ie',b:'desperto',c:'despierto',d:0},{a:'',b:'',c:'',d:0}]).map((e,i)=>`
+ <tr><td><input type="text" data-err="${i}|a" aria-label="Fila ${i+1}: sonido o regla" value="${(e.a||'').replace(/"/g,'&quot;')}"></td>
+ <td><input type="text" data-err="${i}|b" aria-label="Fila ${i+1}: mi error real" value="${(e.b||'').replace(/"/g,'&quot;')}"></td>
+ <td><input type="text" data-err="${i}|c" aria-label="Fila ${i+1}: forma correcta" value="${(e.c||'').replace(/"/g,'&quot;')}"></td>
+ <td><input type="number" min="0" max="99" data-err="${i}|d" aria-label="Fila ${i+1}: veces practicado" value="${e.d||0}"></td></tr>`).join('')}
+ </table></div></div>
+
+ <div class="grid g2">
+  <div class="card box amber" style="margin-bottom:0"><h3 style="font-size:1rem;color:#92400e">🐢 Si te cuesta…</h3><p class="mini" style="color:#92400e">Trabaja solo con: 🧰 Herramientas · 1.2 (/p/~/b/) · 2.1 y 2.2 (<i>ser</i>) · 2.4 (artículos) · 8.3 (guion con huecos). Todo lo demás es opcional esta semana.</p></div>
+  <div class="card box green" style="margin-bottom:0"><h3 style="font-size:1rem;color:#166534">🚀 Si terminas antes…</h3><ul class="mini" style="color:#166534;padding-left:18px"><li>Escribe 8 frases más sobre tu familia.</li><li>Convierte las 10 frases del dictado en preguntas.</li><li>Busca en casa 10 objetos y clasifícalos por ca·co·cu / ce·ci / k / z / s.</li><li>Prepara una pregunta sorpresa para cada miembro de la familia.</li></ul></div>
+ </div>
+
+ <div class="card"><h3>9.5 Contrato de estudio familiar</h3>
+ <div class="box" style="font-style:italic">
+   <p class="mini">Nos comprometemos a repasar juntos <input type="text" data-text="c_dias" aria-label="Días de repaso" value="${S.texts.c_dias||''}" style="width:52px;text-align:center;display:inline-block"> días, <input type="text" data-text="c_min" aria-label="Minutos por día" value="${S.texts.c_min||''}" style="width:64px;text-align:center;display:inline-block"> minutos cada día, en el horario de <input type="text" data-text="c_hora" aria-label="Horario de repaso" value="${S.texts.c_hora||''}" style="width:150px;text-align:center;display:inline-block">.</p>
+   <div style="display:flex;gap:24px;justify-content:center;margin-top:20px;flex-wrap:wrap">
+     ${S.members.map((m,i)=>`<div style="text-align:center"><div style="border-bottom:1.5px solid #94a3b8;width:150px;margin-bottom:5px"></div><span class="mini" style="color:var(--muted)">${m||('Miembro '+(i+1))}</span></div>`).join('')}
+   </div>
+ </div></div>`;
+ updCando();
+}
+function updCando(){
+ const g=$('#cdG'),y=$('#cdY'),r=$('#cdR');if(!g)return;
+ let a=0,b=0,c=0;Object.values(S.canDo).forEach(v=>{if(v==='green')a++;else if(v==='yellow')b++;else if(v==='red')c++});
+ g.textContent=a;y.textContent=b;r.textContent=c;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   4. LÓGICA DE CORRECCIÓN
+   ══════════════════════════════════════════════════════════════ */
+function checkTask(id){
+ const T=TASKS[id],A=S.answers[id]||{};S.checked[id]=S.checked[id]||{};let ok=0;
+ T.items.forEach((it,i)=>{
+   let good=false;
+   if(T.type==='choice'){good=A[i]===it.a}
+   else if(T.type==='syll'){good=A[i]===it.a}
+   else if(T.type==='select'){good=(A[i]===true)===it.s}
+   else if(T.type==='spell'){
+     const toks=String(A[i]||'').split(/[\s\-–—.,;|/]+/).filter(Boolean).map(lnorm);
+     good=toks.length===it.a.length&&toks.every((t,k)=>t===lnorm(it.a[k]));
+   }
+   else{
+     const u=norm(A[i]);const acc=[it.a].concat(it.acc||[]).map(norm);good=acc.includes(u);
+   }
+   S.checked[id][i]=good;if(good)ok++;
+ });
+ save();refreshTask(id);
+ toast(ok===T.items.length?`🎉 ¡Perfecto! ${ok}/${T.items.length}`:`Corregido: ${ok}/${T.items.length} aciertos`);
+ updateScore();
+}
+function retryTask(id){delete S.answers[id];delete S.checked[id];save();refreshTask(id);updateScore()}
+function refreshTask(id){
+ const el=$('#task_'+id);if(!el)return;
+ const tmp=document.createElement('div');tmp.innerHTML=renderTask(id);
+ el.replaceWith(tmp.firstElementChild);
+}
+function renderSection(name){
+ ({ruta:renderRuta,herramientas:renderTools,sonidos:renderSonidos,identidad:renderIdentidad,
+   verbos:renderVerbos,opuestos:renderOpuestos,preguntas:renderPreguntas,ortografia:renderOrtografia,
+   juegos:renderJuegos,proyecto:renderProyecto,autoeval:renderAuto})[name]();
+}
+function updateScore(){
+ let ok=0,ko=0,total=0;
+ Object.keys(TASKS).forEach(id=>{const T=TASKS[id],C=S.checked[id]||{};
+   T.items.forEach((_,i)=>{total++;if(C[i]===true)ok++;else if(C[i]===false)ko++})});
+ $('#nOk').textContent=ok;$('#nKo').textContent=ko;
+ const pct=total?Math.round(ok/total*100):0;
+ $('#ringTxt').textContent=pct+'%';
+ $('#ringFg').style.strokeDashoffset=String(119.4-(119.4*pct/100));
+ const ring=$('#progressRing');if(ring)ring.setAttribute('aria-valuenow',String(pct));
+}
+
+/* ══════════════════════════════════════════════════════════════
+   5. EVENTOS (delegación: sin JS inline)
+   ══════════════════════════════════════════════════════════════ */
+function setMenuOpen(open){
+ const button=$('#btnMenu'),panel=$('#menuPanel');if(!button||!panel)return;
+ button.setAttribute('aria-expanded',String(open));panel.hidden=!open;
+}
+function selectTab(name){
+ const button=$(`[data-tab="${name}"]`);if(!button)return;
+ $$('.menu-item').forEach(b=>{b.classList.remove('active');b.removeAttribute('aria-current')});
+ button.classList.add('active');button.setAttribute('aria-current','page');
+ $$('.tab-pane').forEach(p=>p.classList.add('hidden'));
+ const pane=$('#tab-'+name);if(pane)pane.classList.remove('hidden');
+ renderSection(name);updateScore();setMenuOpen(false);window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.addEventListener('click',e=>{
+ const t=e.target;
+ const hit=(sel)=>t.closest(sel);
+
+ let el;
+ if(el=hit('#btnMenu')){
+   const button=$('#btnMenu');setMenuOpen(button.getAttribute('aria-expanded')!=='true');
+   return;
+ }
+ if(el=hit('[data-tab]')){selectTab(el.dataset.tab);return}
+ if(el=hit('[data-jump-tab]')){selectTab(el.dataset.jumpTab);return}
+ if(el=hit('[data-acc]')){
+   const acc=$('#acc'+el.dataset.acc);const open=acc.classList.toggle('open');
+   el.setAttribute('aria-expanded',String(open));return;
+ }
+ if(el=hit('[data-flip]')){const open=el.classList.toggle('on');el.setAttribute('aria-pressed',String(open));return}
+ if(el=hit('[data-opt]')){
+   const [id,i,o]=el.dataset.opt.split('|');S.answers[id]=S.answers[id]||{};S.answers[id][i]=parseInt(o);
+   save();refreshTask(id);return;
+ }
+ if(el=hit('[data-syl]')){
+   const [id,i,s]=el.dataset.syl.split('|');S.answers[id]=S.answers[id]||{};S.answers[id][i]=parseInt(s);
+   save();refreshTask(id);return;
+ }
+ if(el=hit('[data-sel]')){
+   const [id,i]=el.dataset.sel.split('|');S.answers[id]=S.answers[id]||{};
+   S.answers[id][i]=S.answers[id][i]===true?false:true;save();refreshTask(id);return;
+ }
+ if(el=hit('[data-check]')){checkTask(el.dataset.check);return}
+ if(el=hit('[data-retry]')){retryTask(el.dataset.retry);return}
+ if(el=hit('[data-cando]')){
+   const [i,c]=el.dataset.cando.split('|');S.canDo[i]=(S.canDo[i]===c?'':c);save();renderAuto();return;
+ }
+ if(el=hit('[data-spell]')){
+   const i=parseInt(el.dataset.spell);const k=S.spell.indexOf(i);
+   if(k>=0)S.spell.splice(k,1);else S.spell.push(i);
+   save();const selected=el.classList.toggle('sel');el.setAttribute('aria-pressed',String(selected));
+   const chip=$('#spellChip');if(chip)chip.textContent=S.spell.length+' / 20';return;
+ }
+ if(el=hit('[data-dom]')){
+   const id=parseInt(el.dataset.dom);const next=S.domino.length+1;
+   if(id!==next){toast('Esa ficha todavía no encaja: busca la respuesta a la última pregunta.');return}
+   S.domino.push(id);save();renderDom();
+   if(S.domino.length===30){toast('🎉 ¡Dominó completado y cerrado!');}
+   return;
+ }
+ if(el=hit('#domReset')){if(confirm('¿Reiniciar la partida de dominó?')){S.domino=[];save();renderDom()}return}
+ if(el=hit('#addErr')){S.errors.push({a:'',b:'',c:'',d:0});save();renderAuto();return}
+ if(el=hit('#btnTeacher')){S.teacher=!S.teacher;save();el.textContent=S.teacher?'🙈 Ocultar claves':'👁️ Claves';rerenderAll();toast(S.teacher?'Modo profesor activado: claves visibles.':'Modo alumno.');return}
+ if(el=hit('#btnReset')){if(confirm('¿Reiniciar TODO el progreso del dossier?')){S=blank();save();location.reload()}return}
+ if(!hit('#btnMenu,#menuPanel'))setMenuOpen(false);
+});
+
+document.addEventListener('change',e=>{
+ const t=e.target;
+ if(t.dataset&&t.dataset.route){S.route[t.dataset.route]=t.checked;save();toast(t.checked?'✔ Tarea marcada.':'Tarea desmarcada.');return}
+ if(t.dataset&&t.dataset.flag){S.texts['chk_'+t.dataset.flag]=t.checked?'1':'';save();return}
+ if(t.dataset&&t.dataset.crit){const [i]=t.dataset.crit.split('|');S.texts['crit'+i]=t.value;save();const el=$('#critTotal');if(el)el.textContent=critTotal();return}
+});
+
+document.addEventListener('input',e=>{
+ const t=e.target,d=t.dataset;if(!d)return;
+ if(d.fill){const [id,i]=d.fill.split('|');S.answers[id]=S.answers[id]||{};S.answers[id][i]=t.value;save();
+   const card=t.closest('.card');if(card){const chip=card.querySelector('.score-chip');const btn=card.querySelector('[data-check]');
+     if(chip&&!isDone(id))chip.textContent=answeredCount(id)+'/'+TASKS[id].items.length+' completadas';
+     if(btn){const allAns=TASKS[id].items.every((_,k)=>{const v=(S.answers[id]||{})[k];return v!==undefined&&String(v).trim()!==''});btn.disabled=!allAns||isDone(id)}}
+   return}
+ if(d.text){S.texts[d.text]=t.value;save();return}
+ if(d.proj){const [i,f]=d.proj.split('|');S.proj[i]=S.proj[i]||{};S.proj[i][f]=t.value;save();return}
+ if(d.err){const [i,f]=d.err.split('|');while(S.errors.length<=i)S.errors.push({a:'',b:'',c:'',d:0});
+   S.errors[i][f]=(f==='d')?(parseInt(t.value)||0):t.value;save();return}
+});
+
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape'){
+   if($('#btnMenu').getAttribute('aria-expanded')==='true')setMenuOpen(false);
+   else closeModal();
+ }
+ const modal=$('#setupModal');
+ if(modal&&!modal.classList.contains('hidden')&&e.key==='Tab'){
+   const focusable=[...modal.querySelectorAll('button,input,select,textarea,a[href],[tabindex]:not([tabindex="-1"])')].filter(el=>!el.disabled&&el.offsetParent!==null);
+   if(focusable.length){
+     const first=focusable[0],last=focusable[focusable.length-1];
+     if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+     else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+   }
+ }
+ if(e.key==='Enter'&&modal&&!modal.classList.contains('hidden')){
+   const ae=document.activeElement;if(ae&&ae.tagName!=='TEXTAREA'){e.preventDefault();startApp()}
+ }
+});
+
+/* ══════════════════════════════════════════════════════════════
+   6. MODAL + ARRANQUE (a prueba de fallos)
+   ══════════════════════════════════════════════════════════════ */
+let modalOpener=null;
+function setBackgroundInert(value){
+ ['header.hero','nav.tabs','main','.dock'].forEach(sel=>{const el=$(sel);if(el)el.inert=value});
+}
+function closeModal(){
+ const m=$('#setupModal');if(!m)return;
+ m.classList.add('hidden');m.style.display='none';m.setAttribute('aria-hidden','true');setBackgroundInert(false);
+ if(modalOpener&&document.contains(modalOpener))modalOpener.focus();
+ modalOpener=null;
+}
+function openModal(opener){
+ const m=$('#setupModal');if(!m)return;
+ modalOpener=(opener&&opener.nodeType===1)?opener:document.activeElement;
+ $('#familyName').value=S.family||'';
+ $('#member1').value=S.members[0]||'';$('#member2').value=S.members[1]||'';$('#member3').value=S.members[2]||'';
+ $('#varietySelect').value=S.variety||'peninsular';
+ m.classList.remove('hidden');m.style.display='flex';m.removeAttribute('aria-hidden');setBackgroundInert(true);
+ setTimeout(()=>{try{$('#familyName').focus()}catch(e){}},60);
+}
+function startApp(){
+ try{
+   S.family=($('#familyName').value||'').trim()||'Mi familia';
+   S.members=[$('#member1').value.trim(),$('#member2').value.trim(),$('#member3').value.trim()].map((m,i)=>m||('Miembro '+(i+1)));
+   S.variety=$('#varietySelect').value;
+   save();
+ }catch(e){/* nunca bloquear el cierre por un error de datos */}
+ closeModal();
+ boot();
+ toast('👪 Datos de '+S.family+' actualizados. ¡A repasar!');
+}
+
+let booted=false;
+function boot(){
+ $('#familyPill').textContent=S.family||'Nuestra familia';
+ $('#btnTeacher').textContent=S.teacher?'🙈 Ocultar claves':'👁️ Claves';
+ renderRuta();updateScore();
+ // Las demás pestañas se renderizan al abrirlas (ahorra tiempo de carga).
+ ['herramientas','sonidos','identidad','verbos','opuestos','preguntas','ortografia','juegos','proyecto','autoeval']
+   .forEach(n=>{try{renderSection(n)}catch(err){console.warn(n,err)}});
+ booted=true;
+}
+function rerenderAll(){
+ const active=$('.menu-item.active');const name=active?active.dataset.tab:'ruta';
+ try{renderSection(name)}catch(e){}
+}
+
+$('#btnStart').addEventListener('click',startApp);
+$('#btnCloseSetup').addEventListener('click',closeModal);
+$('#btnOpenSetup').addEventListener('click',e=>openModal(e.currentTarget));
+$('#setupModal').addEventListener('click',e=>{if(e.target.id==='setupModal')closeModal()});
+
+/* Arranque sin modal: el dossier se usa de inmediato y los datos de familia
+   se pueden editar desde el encabezado cuando haga falta. */
+try{
+ boot();
+}catch(err){
+ console.error(err);
+ try{closeModal();boot()}catch(e2){document.body.insertAdjacentHTML('afterbegin','<div style="padding:20px;background:#fee2e2">Error de arranque. Recarga la página.</div>')}
+}
+</script>
+</body>
+</html>

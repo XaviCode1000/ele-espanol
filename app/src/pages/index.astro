@@ -1,0 +1,36 @@
+---
+import DossierLayout from '../layouts/DossierLayout.astro';
+import Hero from '../components/Hero.astro';
+import Nav from '../components/Nav.astro';
+import FamilyModal from '../components/FamilyModal.astro';
+import Ruta from '../components/sections/Ruta.astro';
+import Herramientas from '../components/sections/Herramientas.astro';
+import Sonidos from '../components/sections/Sonidos.astro';
+import Identidad from '../components/sections/Identidad.astro';
+import Verbos from '../components/sections/Verbos.astro';
+import Opuestos from '../components/sections/Opuestos.astro';
+import Preguntas from '../components/sections/Preguntas.astro';
+import Ortografia from '../components/sections/Ortografia.astro';
+import Juegos from '../components/sections/Juegos.astro';
+import Proyecto from '../components/sections/Proyecto.astro';
+import Autoeval from '../components/sections/Autoeval.astro';
+---
+
+<DossierLayout title="Dossier de Repaso Autónomo Familiar · ELE A1 · Módulo 1">
+  <Hero />
+  <Nav />
+  <main id="main">
+    <section id="tab-ruta" class="tab-pane"><Ruta /></section>
+    <section id="tab-herramientas" class="tab-pane hidden"><Herramientas /></section>
+    <section id="tab-sonidos" class="tab-pane hidden"><Sonidos /></section>
+    <section id="tab-identidad" class="tab-pane hidden"><Identidad /></section>
+    <section id="tab-verbos" class="tab-pane hidden"><Verbos /></section>
+    <section id="tab-opuestos" class="tab-pane hidden"><Opuestos /></section>
+    <section id="tab-preguntas" class="tab-pane hidden"><Preguntas /></section>
+    <section id="tab-ortografia" class="tab-pane hidden"><Ortografia /></section>
+    <section id="tab-juegos" class="tab-pane hidden"><Juegos /></section>
+    <section id="tab-proyecto" class="tab-pane hidden"><Proyecto /></section>
+    <section id="tab-autoeval" class="tab-pane hidden"><Autoeval /></section>
+  </main>
+  <FamilyModal />
+</DossierLayout>

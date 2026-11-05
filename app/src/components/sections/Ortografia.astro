@@ -1,0 +1,16 @@
+---
+import TaskMount from '../TaskMount.astro';
+import { DICT } from '../../data/autoeval.js';
+---
+
+<h2 class="sec-title" data-fr="t-ort">✒️ Ortografía y puntuación</h2>
+<p class="sec-desc" data-fr="d-ort">Lo que el francés y el árabe no comparten con el español: los dos signos, las tildes, las mayúsculas, la h muda y la b = v.</p>
+<TaskMount id="orth6_1" />
+<TaskMount id="orth6_2" />
+<TaskMount id="orth6_3" />
+<div class="card"><h3>6.4 Dictado en cadena (10 frases)</h3>
+<p class="cons" data-fr="dictado">El Técnico de Sonido lee cada frase <b>una sola vez</b>. Los otros dos la escriben a mano. Después se compara con el modelo (haz clic para revelarlo). 1 punto por frase sin errores.</p>
+{DICT.map((f, i) => (
+  <details><summary>{`Frase ${i + 1} · pulsa para ver el modelo`}</summary><div class="body">{f}</div></details>
+))}
+<p class="hint">Puntuación del equipo: ____ / 10. Errores más frecuentes: tildes, ¿?, mayúsculas, /p/~/b/.</p></div>

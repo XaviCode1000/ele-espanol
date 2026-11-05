@@ -1,0 +1,61 @@
+---
+import { ROUTE } from '../../data/route.js';
+
+/* Página principal: contenido 100% informativo para la familia → en francés.
+   Los ejercicios (resto de pestañas) quedan en español con ayudas FR. */
+---
+
+<h2 class="sec-title">📅 Parcours de révision : 5 jours + 3 révisions · 115 minutes</h2>
+<p class="sec-desc">Travaillez ensemble à table, cahier ouvert et un téléphone pour vous enregistrer. Cochez chaque case quand elle est terminée.</p>
+<div class="card"><h3 style="margin-bottom:12px">Plan de travail</h3>
+  {ROUTE.map((r) => (
+    <div class="cando-row route-row">
+      <label class="route-check">
+        <input type="checkbox" class="chk" data-route={r.k} aria-label={`Marquer ${r.d} comme terminé`} />
+      </label>
+      <div style="flex:1">
+        <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:3px">
+          <b style="font-size:.95rem">{r.d}</b>
+          <span class="tag">⏱️ {r.m}</span>
+          <span class="tag p">👤 {r.r}</span>
+        </div>
+        <button type="button" class="route-link" data-jump-tab={r.j}>{r.t} <span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  ))}
+</div>
+<div class="grid g2">
+  <div class="card">
+    <div class="card-head"><div><h3>👥 Rôles familiaux</h3></div></div>
+    <p class="cons">Changez de rôle chaque jour pour que tout le monde s'entraîne à tout.</p>
+    <div class="role"><i style="background:#2563eb">A</i><div><b>Chronométreur</b><br><span class="mini" style="color:var(--muted)">Contrôle les minutes et prévient 5 minutes avant la fin.</span></div></div>
+    <div class="role"><i style="background:#16a34a">B</i><div><b>Porte-parole</b><br><span class="mini" style="color:var(--muted)">Lit les consignes à voix haute et dirige le jeu.</span></div></div>
+    <div class="role"><i style="background:#7c3aed">C</i><div><b>Correcteur</b><br><span class="mini" style="color:var(--muted)">Vérifie avec la Clé et note les erreurs sur le Mur.</span></div></div>
+    <div class="role"><i style="background:#d97706">T</i><div><b>Technicien du son</b><br><span class="mini" style="color:var(--muted)">Enregistre, réécoute et cherche la prononciation avec l'audio.</span></div></div>
+  </div>
+  <div class="card">
+    <div class="card-head"><div><h3>🔊 Protocole audio autonome</h3></div></div>
+    <p class="cons">Sans professeur : utilisez le téléphone comme laboratoire de phonétique.</p>
+    <ol class="steps">
+      <li><b>Écouter :</b> tapez le mot dans un traducteur ou un dictionnaire avec audio et choisissez la voix de votre variété (<b><span data-variety="Espagne" data-variety-latam="Amérique latine">Espagne</span></b>).</li>
+      <li><b>Regarder :</b> face au miroir. Pour <b>/p/</b>, un souffle d'air sort (main devant la bouche) ; pour <b>/b/</b>, pas d'air et la gorge vibre (main sur le cou).</li>
+      <li><b>Enregistrer :</b> enregistrez-vous en disant le mot 3 fois.</li>
+      <li><b>Comparer :</b> écoutez votre enregistrement puis le modèle, l'un après l'autre. Évaluez : pareil / presque / différent.</li>
+    </ol>
+  </div>
+</div>
+<div class="card box amber" style="border-radius:var(--r)">
+  <h3 style="font-size:1rem;color:#92400e;margin-bottom:6px">⚠️ Note de variété phonétique</h3>
+  <p class="mini" style="color:#92400e">En Espagne, <b>ce / ci / z</b> se prononcent comme le « th » anglais de <i>thin</i> (/θ/) : <i>cero, cine, Zaragoza</i>. En Amérique latine, ils se prononcent /s/ : <i>cero, cine</i>. Les deux sont correctes et l'écriture ne change pas. Votre sélection actuelle : <b><span data-variety="Espagne (/θ/)" data-variety-latam="Amérique latine (/s/)">Espagne (/θ/)</span></b>.</p>
+</div>
+<div class="card">
+  <h3 style="margin-bottom:8px">🎯 Ce qui doit être parfait à la fin</h3>
+  <div class="grid g2">
+    <div class="box green mini">✅ Le verbe <b>ser</b> dans toutes les phrases d'identité (<i>Soy profesor</i>, jamais <i>Yo profesor</i>).</div>
+    <div class="box green mini">✅ <b>Zéro article</b> devant les professions (<i>Soy médico</i>, jamais <i>Soy un médico</i>).</div>
+    <div class="box green mini">✅ Épellation fluide avec les noms des lettres et les règles <b>ca/co/cu</b> vs <b>ce/ci</b>.</div>
+    <div class="box green mini">✅ <b>/p/ ≠ /b/</b>, <b>/e/ ≠ /i/</b>, <b>/o/ ≠ /u/</b> et diphtongues <b>ie/ue</b> intacts.</div>
+    <div class="box green mini">✅ L'accord de <b>¿cuánto/a/os/as?</b> et l'emploi temporel de <b>¿cuándo?</b>.</div>
+    <div class="box green mini">✅ Projet répété et enregistré : 3 cartes + arbre + script de 3 minutes.</div>
+  </div>
+</div>

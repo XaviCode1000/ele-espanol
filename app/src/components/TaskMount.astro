@@ -1,0 +1,11 @@
+---
+interface Props {
+  id: string;
+}
+
+/* Mount de tarea: el cliente lo sustituye por la tarjeta completa
+   (renderTask) porque su contenido depende del estado guardado. */
+const { id } = Astro.props;
+---
+
+<div class="card" data-task-mount={id}></div>

@@ -1,0 +1,55 @@
+---
+const items = [
+  { id: 'ruta', label: '📅 Ruta', active: true },
+  { id: 'herramientas', label: '🧰 Herramientas' },
+  { id: 'sonidos', label: '🔊 Sonidos' },
+  { id: 'identidad', label: '🪪 Identidad' },
+  { id: 'verbos', label: '⚙️ Verbos' },
+  { id: 'opuestos', label: '↔️ Opuestos' },
+  { id: 'preguntas', label: '❓ Preguntas' },
+  { id: 'ortografia', label: '✒️ Ortografía' },
+  { id: 'juegos', label: '🎲 Juegos' },
+  { id: 'proyecto', label: '🌳 Proyecto' },
+  { id: 'autoeval', label: '✅ Autoevaluación' },
+];
+---
+
+<nav class="tabs" id="contenido" aria-label="Navegación principal">
+  <div class="nav-shell">
+    <button class="family-toggle" id="btnOpenSetup" type="button" title="Editar datos de la familia" aria-label="Editar datos de la familia">
+      <span aria-hidden="true">👪</span><span id="familyPill">Nuestra familia</span>
+    </button>
+    <div class="nav-actions">
+      <button class="nav-btn" id="btnFr" type="button" aria-pressed="false" title="Mostrar ayudas en francés" aria-label="Mostrar ayudas en francés">
+        <span aria-hidden="true">🇫🇷</span><span class="lbl-hide">&nbsp;FR</span>
+      </button>
+      <button class="nav-btn" id="btnTeacher" type="button" title="Mostrar claves">
+        <span aria-hidden="true" id="teacherEmoji">👁️</span><span class="lbl-hide" id="teacherLbl">&nbsp;Claves</span>
+      </button>
+      <button class="menu-toggle" id="btnMenu" type="button" aria-expanded="false" aria-controls="menuPanel">☰ Contenido</button>
+    </div>
+    <div class="menu-panel" id="menuPanel" hidden>
+      <div class="menu-progress">
+        <div class="ring" id="progressRing" role="progressbar" aria-label="Progreso del dossier" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+            <circle cx="23" cy="23" r="19" fill="none" stroke="#e2e8f0" stroke-width="4"></circle>
+            <circle id="ringFg" cx="23" cy="23" r="19" fill="none" stroke="#2563eb" stroke-width="4"
+                    stroke-linecap="round" stroke-dasharray="119.4" stroke-dashoffset="119.4" style="transition:stroke-dashoffset .5s ease"></circle>
+          </svg>
+          <span id="ringTxt">0%</span>
+        </div>
+        <span class="chip ok" aria-live="polite">✔ <span id="nOk">0</span></span>
+        <span class="chip ko" aria-live="polite">✗ <span id="nKo">0</span></span>
+        <span class="mini" style="color:var(--muted)">Progreso del dossier</span>
+      </div>
+      <div class="menu-grid" id="tabNav">
+        {items.map((it) => (
+          <button class:list={['menu-item', { active: it.active }]} type="button" data-tab={it.id} aria-current={it.active ? 'page' : undefined}>{it.label}</button>
+        ))}
+      </div>
+      <div class="menu-foot">
+        <button class="btn btn-ghost btn-sm" id="btnReset" type="button" title="Borrar todo el progreso">↺ Reiniciar todo</button>
+      </div>
+    </div>
+  </div>
+</nav>

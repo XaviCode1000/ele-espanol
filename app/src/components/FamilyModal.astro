@@ -1,0 +1,31 @@
+---
+---
+
+<div class="modal hidden" id="setupModal" role="dialog" aria-modal="true" aria-labelledby="setupTitle" aria-describedby="setupDesc" aria-hidden="true">
+  <div class="modal-box">
+    <button class="modal-x" id="btnCloseSetup" type="button" aria-label="Cerrar">✕</button>
+    <h2 id="setupTitle">Datos de la familia</h2>
+    <p id="setupDesc" data-fr="modal" style="color:var(--muted);font-size:.92rem;margin-bottom:16px">Personalizá el dossier para el grupo familiar. Podés editar estos datos en cualquier momento.</p>
+    <div class="field">
+      <label class="lbl" for="familyName">Apellido de la familia</label>
+      <input type="text" id="familyName" placeholder="Ej.: Benali" autocomplete="off" />
+    </div>
+    <div class="field">
+      <label class="lbl">Los 3 integrantes</label>
+      <div class="grid g3" style="gap:8px">
+        <input type="text" id="member1" placeholder="Integrante 1" aria-label="Integrante 1" autocomplete="off" />
+        <input type="text" id="member2" placeholder="Integrante 2" aria-label="Integrante 2" autocomplete="off" />
+        <input type="text" id="member3" placeholder="Integrante 3" aria-label="Integrante 3" autocomplete="off" />
+      </div>
+    </div>
+    <div class="field">
+      <label class="lbl" for="varietySelect">Variedad de español</label>
+      <select id="varietySelect">
+        <option value="peninsular">España · ce/ci/z = /θ/ (como la «th» inglesa)</option>
+        <option value="latam">América Latina · ce/ci/z = /s/</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" id="btnStart" type="button" style="width:100%;margin-top:6px">Guardar cambios</button>
+    <p class="hint" style="text-align:center;margin-top:10px">Podés cerrar con <b>✕</b> sin guardar los cambios.</p>
+  </div>
+</div>

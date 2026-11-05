@@ -1,0 +1,16 @@
+---
+import TaskMount from '../TaskMount.astro';
+import { ENTREV } from '../../data/autoeval.js';
+
+const rueda = ENTREV.slice(6, 12);
+---
+
+<h2 class="sec-title" data-fr="t-preg">❓ Preguntar bien</h2>
+<p class="sec-desc" data-fr="d-preg">Concordancia de <b>¿cuánto/a/os/as?</b>, uso temporal de <b>¿cuándo?</b> y ortografía obligatoria de los dos signos.</p>
+<TaskMount id="q5_1" />
+<TaskMount id="q5_2" />
+<TaskMount id="q5_3" />
+<div class="card"><h3>5.4 Rueda de preguntas en familia</h3>
+<p class="cons" data-fr="rueda">Cada miembro formula <b>2 preguntas</b> con ¿Cuánto/a/os/as? y <b>1</b> con ¿Cuándo? a otro miembro, que responde con una frase completa.</p>
+<div class="grid g3">{rueda.map((q) => <div class="box blue mini" style="text-align:center;font-weight:600;color:#1e40af">{q}</div>)}</div>
+<p class="hint">El Corrector anota: ¿falta el verbo <i>ser</i>? ¿hay artículo con profesión? ¿está el signo <b>¿</b>? ¿la concordancia de cuánto/a/os/as es correcta?</p></div>
